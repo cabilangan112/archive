@@ -1,0 +1,21 @@
+.navss{ 
+  text-align: center;
+  margin-bottom: 50px;
+  margin-left: -90px;
+}
+.navs{
+	font-size: 20px;
+}
+@media (max-width: 1000px){
+	.navss{ 
+ 		left: 0;
+ 		right: 0;
+ 		text-align: center;
+ 		margin-top: 20px;
+ 		margin-left: 5px;
+	  margin-bottom: 10px;
+	}
+	.navs{
+		font-size: 12px;
+	}
+}

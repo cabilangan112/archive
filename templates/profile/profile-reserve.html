@@ -1,0 +1,50 @@
+  {% load static from staticfiles %}
+{% block content %} 
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Profile | {{user.last_name}}</title>
+  <link href="{% static 'css/user-book.css' %}" rel="stylesheet">
+  {% include 'base.html'%}  
+</head>
+<body>
+  <div class="list">
+    <form class='form' method='GET' action='.'>
+      <input type='text' placeholder='Search..' name='q' value='{{ request.GET.q }}'>
+      <button class='btn btn-default' type='submit'  >Search</button>
+    </form>
+    {% if user %}
+      <h1 class="title" >{{user.last_name}} :</h1>
+      <div class="navss">
+        {% include 'snippets/nav.html'%}
+      </div>
+        {% for book in user.reserve_set.all %}
+          {% if book.reserve %}
+          {% if not book.remove %}
+            <div class="card">
+              <h2 class="author"><a  class="link" href="{% url "books:reserve-detail" book.book.title %}">{{ book.book.title }}</a></h2>
+              <p class="book">ISBN : {{ book.book.isbn }}</p>
+              <p class="book">Genre : {% for genre in book.book.genre.all %} {{ genre }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>  
+              <p class="book">{{ book.summary }}</p>
+              <p class="book">Author : {{ book.book.author }} ({{book.book.author.date_of_birth}} - {{book.book.author.date_of_death}})</p>
+              {% for instance  in book.book.bookinstance_set.all %} 
+              <p class="book"> Imprint : {{  instance.imprint }}</p>
+              {% endfor %}
+              <button type="button" class="bton btn btn-sign-in navbar-btn navbar-right btn-layout button" onclick="location.href='{% url "books:borrow" book.book.title%}'" >
+              <span>Borrow </span>
+              </button>
+              <button type="button" class="btn btn-sign-in navbar-btn navbar-right btn-layout button" onclick="location.href='{% url "books:remove" book.id%}'" >
+              <span>Remove</span>
+              </button>
+            </div>
+          {% endif %}
+          {% endif %}
+        {% endfor %}
+    {% else %}
+      <p>Empty</p>
+    {% endif %}
+  </div>
+</body>
+</html>
+{% include 'footer.html'%}
+{% endblock content %}

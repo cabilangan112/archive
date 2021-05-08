@@ -7,13 +7,18 @@ from django.contrib.auth import get_user_model
 from .models import (Post,
 					Department,
 					Author, 
-					Course
+					Course,
 					)
 from .forms import (PostForm,
 					DepartmentForm,
 					CourseForm,
 					AuthorForm
 					)
+class HomeView(View):
+    def get(self, request, *args, **kwargs):
+        file = Post.objects.all()
+        context = {'file':file,}
+        return render(request, "home.html", context)
 
 class PostView(View):
     def get(self, request, *args, **kwargs):

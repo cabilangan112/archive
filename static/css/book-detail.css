@@ -1,0 +1,47 @@
+.detail{
+	margin-top: 90px;
+	margin-left: 200px;
+	margin-bottom: 100px;
+}
+.list{
+
+	margin-left: 20px;
+	margin-bottom: 10px;
+	margin-right: 200px;
+}
+.copy{
+	margin-top: 40px;
+	text-align: center;
+}
+.bton{
+	margin-left: 20px;
+  float: left;
+}
+
+@media (max-width: 1000px){
+	.detail{
+		margin-top: 90px;
+		margin-left: 10px;
+
+		left: 0;
+		right: 0;
+		margin-bottom: 50px;
+	}
+  .list{
+  	margin-right: 10px;
+  }
+  .copy{
+ 		margin-left: -20px;
+ 		margin-right: 10px;
+ 		margin-bottom: 90px;
+  	left: 0;
+  	right: 0;
+  	text-align: center;
+  }
+
+}
+ 
+.link{
+  color: black;	
+
+}

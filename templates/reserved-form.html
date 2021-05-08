@@ -1,0 +1,34 @@
+
+{% load static from staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>NDMC Library | Reserve</title>
+  <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" type="image/vnd.microsoft.icon">
+  <link rel="stylesheet" href="{% static 'css/reserve.css' %}">
+</head>
+{% block content %}
+{% include 'base.html'%}
+<body>
+	<div class="card"> 
+	  <h2 class="headline">Book Reservation</h2>
+	 	{% if user.is_authenticated %}
+	 		<h2 class="title">User : {{user.last_name}} {{user.first_name}}</h2>
+	 	{% endif %}
+	  <h2 class="title">Title : {{book.title}}</h2>
+	  <p>Author <strong>: {{book.author}}</p></strong>
+	  <p>ISBN <strong>: {{book.isbn}}</p></strong>
+	  <p>{{book.imprint}}</p>
+		{% for instance  in book.bookinstance_set.all %} 
+			<p class="book"> Imprint : {{  instance.imprint }}</p>
+		{% endfor %}	
+		<form method="post" enctype="multipart/form-data">
+		  {% csrf_token %}
+		  {{form.as_p}}
+		  <input type="submit" class="btn btn-primary" value="Reserve" >
+		</form>
+	</div>
+{% endblock %}
+</body>
+{% include 'footer.html'%}
+</html>

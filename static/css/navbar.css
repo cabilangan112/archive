@@ -1,0 +1,93 @@
+.btn-sign-in {
+  color: #fff;
+  background-color: #076107;
+  border-color: #95b12c;
+}
+.btn-sign-in:focus, .btn-sign-in:hover {
+  color: #f9f562;
+  text-decoration: none;
+  background-color: #056705;
+  border-color: #858e14;
+}
+.btn-layout{
+  margin-right: 0.3px;
+}
+.navbar {
+  width: 100%
+  border-radius: 0px;
+  margin-bottom: 0px;
+  background-color: #292c2f;
+  box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.5);
+}
+.navbar-inverse .navbar-brand {
+  color: #fffa65;
+}
+.navbar-inverse .navbar-nav>li>a {
+  color: #fffa65;
+}
+.navbar-inverse .navbar-toggle {
+  border-color: #fffa65;
+  box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.5);
+}
+.button {
+  border-radius: 4px;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  transition: all 0.5s;
+  cursor: pointer;
+}
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+.button span:after {
+  content: '»';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+.button:hover span {
+  padding-right: 25px;
+}
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+.navbar-brand > img{
+  margin-top: -5px;
+  border-radius: 40px;
+}
+@media all and (min-width: 1000px) {
+  .navbar-resize {
+    font-size:10px;
+    
+  }
+}
+@media all and (min-width: 300px) {
+  .navbar-resize  {
+    font-size:14px;
+  } 
+}
+@media all and (min-width: 400px) {
+  .navbar-resize  {
+    font-size:0.6em;
+  } 
+}
+@media all and (min-width: 700px) { 
+  .navbar-resize  {
+    font-size:0.7em;
+  }
+ }
+@media all and (min-width: 920px) {
+  .navbar-resize  {
+    font-size:1.2em
+  } 
+}
+a{
+  color: white;
+}

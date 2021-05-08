@@ -1,0 +1,29 @@
+{% load static %}
+	<link href="{% static 'css/navs.css' %}" rel="stylesheet">
+ 
+<div class='navss   col-sm-12 text-center col-sm-offset-3'>
+	{% if request.user.is_authenticated %}
+		{% if request.user.is_superuser %}
+			<a class="link" href=' '><strong>Reserve</strong></a> |
+			<a class="link"  href=' '><strong>Borrow</strong></a> 
+ 
+ 
+		{% else %}
+			<p class=navs><a class="link"  href='{% url "user:detail" user.email %}'><strong> Reserve List</strong></a> |
+ 
+ 			<a class="link"  href='{% url "user:edit_profile" user.id %}'><strong>Edit Profile</strong> </a> 
+ 			 
+ 		</p>
+
+		{% endif %}
+	{% else %}
+	 <div class="inner">
+		<a href=' '>
+			<h3 class="masthead-brand">Welcome</h3>
+		</a>
+		<nav class="nav nav-masthead">
+			<a class="nav-link active btn" href=' '>Register</a>
+		</nav>
+	</div>
+	{% endif %}
+</div>

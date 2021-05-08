@@ -1,0 +1,34 @@
+.fade{
+  transition:all ease-out .5s 0s;
+}
+.fade-ani{
+  opacity:0;
+}
+.fade-up{
+  bottom:-50px;
+}
+.fade-down{
+  top:-50px;
+}
+.fade-left{
+  left:-50px;
+}
+.fade-right{
+  right:-50px;
+}
+.fade-ani.showing{}
+.fade-in.showing{
+  opacity:1;
+}
+.fade-up.showing{
+  bottom:0px;opacity:1;
+}
+.fade-down.showing{
+  top:-0px;opacity:1;
+}
+.fade-left.showing{
+  left:-0px;opacity:1;
+}
+.fade-right.showing{
+  right:-0px;opacity:1;
+}

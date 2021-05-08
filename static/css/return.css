@@ -1,0 +1,108 @@
+ 
+.card{
+  padding-top: 30px;
+  margin-top: 80px;
+  margin-bottom: 90px;
+  padding-left: 100px;
+  padding-bottom:10px;
+  border: 1px solid #f2f2f2;
+  border-radius: 3px;
+  max-width: 800px;
+  margin-left: 250px;
+  background-color: white;
+  height: 450px;
+  padding-bottom: 500px;
+  box-shadow: 1px 0px 10px 1px rgba(0,0,0,0.5);
+}
+.headline{
+  margin-left:190px;
+  margin-bottom: 40px;
+}
+input[type=text], select, textarea {
+  width: 55%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin: 3px;
+  resize: vertical;
+  text-align: center;
+}
+
+button {
+  background-color: #4CAF50;
+  color: white;
+  border-radius: 5px;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  opacity: 0.9;
+  text-align: center;
+}
+
+ 
+.card input[type=submit] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: center;
+  margin-top: 20px;
+  width: 20%;
+}
+
+input[type=submit]:hover {
+    background-color: #45a049;
+    text-align: center;
+}
+input[type=password], select, textarea {
+  width: 60%;
+  margin: 3px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+  text-align: center;
+}
+.book{
+  color: blue;
+}
+.books{
+  font-size: 20px;
+}
+@media (max-width: 1000px){
+  .card{
+ 
+    margin-top: 50px;
+    width: 122%;
+    height: 600px;
+    margin-bottom: -150px;
+    margin-left: -80px;
+    padding-top: 60px;
+    margin-right: 20px;
+    padding-right: 20px;
+  }
+  .card input[type=text]{
+    padding: 9px;
+    width: 60%
+
+  }
+  .headline{
+    margin-left:50px;
+    margin-bottom: 50px;
+  }
+  .title{
+    font-size: 20px;
+  }
+  .card input[type=submit]{
+    float: right;
+    width: 100px;
+  }
+}
+
+
+.head{
+  text-align: center;
+}
