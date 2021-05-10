@@ -10,7 +10,7 @@ from django.contrib.auth import (
 )
 from django.views import generic
 from.models import User
-from catalog.models import Borrow,Book
+ 
 from django.urls import reverse	
 from .forms import UserLoginForm, UserRegisterForm,EditProfileForm,EditPasswordForm,PersonnelUserRegisterForm
 from django.contrib.auth.mixins import LoginRequiredMixin

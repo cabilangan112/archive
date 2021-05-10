@@ -1,19 +1,14 @@
+import os
+from django.conf import settings
 from django.shortcuts import render
 from django.contrib.auth import login
 from django.shortcuts import render, Http404, get_object_or_404, redirect
 from django.views.generic import (ListView,DetailView,CreateView,UpdateView, View)
 from django.contrib.auth.mixins import (LoginRequiredMixin,PermissionRequiredMixin)
 from django.contrib.auth import get_user_model
-from .models import (Post,
-					Department,
-					Author, 
-					Course,
-					)
-from .forms import (PostForm,
-					DepartmentForm,
-					CourseForm,
-					AuthorForm
-					)
+from .models import (Post, Department, Author, Course,)
+from .forms import (PostForm, DepartmentForm, CourseForm, AuthorForm)
+ 
 class HomeView(View):
     def get(self, request, *args, **kwargs):
         file = Post.objects.all()
@@ -31,6 +26,15 @@ class PostDetailView(View):
         post = get_object_or_404(Post, title=title)
         context = {'post':post,}
         return render(request, "pdf_detail.html", context)
+
+def download(request, path, id):
+    file_path = os.path.join(settings.MEDIA_ROOT, path)
+    if os.path.exists(file_path):
+        with open(file_path, 'rb') as fh:
+            response = HttpResponse(fh.read(), content_type="application/vnd.ms-excel")
+            response['Content-Disposition'] = 'inline; filename=' + os.path.basename(file_path)
+            return response
+    raise Http404
 
 class PdfUploadView(LoginRequiredMixin ,View):
     form_class = PostForm
@@ -54,4 +58,7 @@ class PdfUploadView(LoginRequiredMixin ,View):
             'form': form
         }
         return render(request, self.template_name, context)
-# Create your views here.
+
+
+
+ 
