@@ -1,63 +1,51 @@
-
-{% load static from staticfiles %}
+{% load static %}
 <!DOCTYPE html>
 <html>
-<head>
-  <title>NDMC Library | Login</title>
-  <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" type="image/vnd.microsoft.icon">
-  <link rel="stylesheet" href="{% static 'css/login.css' %}">
-</head>
-{% include 'base.html'%}
-<body>
-
-{% block content %}
-
-<div class="card"> 
- 
-              <h2 class="headline">Login</h2>
-                <form method="post" action="{% url 'login' %}">
-                  {% csrf_token %}
-                <div class="row">
-                  <div class="col-12">
-                    <div class="form-group">
-                      <td>{{ form.email.label_tag }}</td>
-                      <td>{{ form.email }}</td>
-                    </div>
-                  </div>
-                  <div class="password col-12">
-                    <div class="form-group">
-                      <td>{{ form.password.label_tag }}</td>
-                      <td>{{ form.password }}</td>
-                    </div>
-                    {% if form.errors %}
-  <div style="margin-right: 30px;" class="error_message col-md-12 offset-md-0 alert alert-danger" role="alert" >
-{% if form.errors %}
-<p>Email Address and Password didn't match</p>
-{% endif %}
-  </div>
-{% endif %}
-                  </div>
-                  <div class="col-12">
-                    <input type="submit" value="Login" class="btn foode-btn"/>
-                    <input type="hidden" name="next" value="{{ next }}" />
-                  </div>
-                </div>
-              </form> 
-          <div class="bton">
-                        <button type="button" class="button" onclick="location.href='{% url "register" %}'" >
-            <span>Sign as Student</span>
-          </button>
-          </div>
-                          <div class="bton">
-                            <button type="button" class="button" onclick="location.href='{% url "register-personnel" %}'" >
-                <span>Sign up as Personnel</span>
-              </button>
+  <head>
+    <title>NDMC Library | Login</title>
+    <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" type="image/vnd.microsoft.icon">
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+  </head>
+  {% include 'base.html'%}
+  <body>
+    {% block content %}
+    <div class="card"> 
+      <h2 class="headline">Login</h2>
+        <form method="post" action="{% url 'login' %}">
+          {% csrf_token %}
+          <div class="row">
+            <div class="col-12">
+              <div class="form-group">
+                <td>{{ form.email.label_tag }}</td>
+                <td>{{ form.email }}</td>
+              </div>
             </div>
+            <div class="password col-12">
+              <div class="form-group">
+                <td>{{ form.password.label_tag }}</td>
+                <td>{{ form.password }}</td>
+              </div>
+            </div>
+          </div>
+          {% if form.errors %}
+          <div style="margin-right: 30px;" class="error_message col-md-12 offset-md-0 alert alert-danger" role="alert" >
+            {% if form.errors %}
+              <p>Email Address and Password didn't match</p>
+            {% endif %}
+          </div>
+          {% endif %}
+          <div class="col-12">
+            <input type="submit" value="Login" class="btn foode-btn"/>
+            <input type="hidden" name="next" value="{{ next }}" />
+            <button type="button" class="button" onclick="location.href='{% url "register" %}'" >
+              <span>Sign Up</span>
+            </button>
+  
+          </div>
+      </form> 
 
-   
- 
-</div>
-{% endblock %}
-</body>
-{% include 'footer.html'%}
+    </div>
+    {% endblock %}
+  </body>
+  {% include 'footer.html'%}  
 </html>

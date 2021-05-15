@@ -4,6 +4,7 @@ from django.conf import settings
 from .validators import validate_file_extention
 from django.urls import reverse
 from .utils import unique_slug_generator
+from account.models import Course,Department
 User = settings.AUTH_USER_MODEL
 
 YEAR = (
@@ -32,42 +33,6 @@ class PathAndRename(object):
             filename = '{}.{}'.format(instance.pk,ext)
         return os.path.join(self.path, filename)
 path_and_rename = PathAndRename("media/file/")
-
-
-class Course(models.Model):
-    course_code        = models.CharField(max_length=100)
-    course_description = models.CharField(max_length=100) 
-    date_created       = models.DateTimeField(auto_now_add=True)
-    date_modified      = models.DateTimeField(auto_now=True)
-    slug               = models.SlugField(null=True, blank=True)
-
-    def __str__(self):
-        return '{}'.format(self.course_code)
-
-    @property
-    def slug_title(self):
-        return '{}'.format(self.course_code)   
-
-    class Meta:
-        ordering = ['-date_created']
-
-
-class Department(models.Model):
-    department_code        = models.CharField(max_length=100)
-    department_description = models.CharField(max_length=100) 
-    date_created           = models.DateTimeField(auto_now_add=True)
-    date_modified          = models.DateTimeField(auto_now=True)
-    slug               = models.SlugField(null=True, blank=True)
-
-    def __str__(self):
-        return '{}'.format(self.department_code)
-        
-    @property
-    def slug_title(self):
-        return '{}'.format(self.course_code)   
-
-    class Meta:
-        ordering = ['-date_created']
 
 class Author(models.Model):
     lastname           = models.CharField(max_length=100)

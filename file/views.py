@@ -33,32 +33,21 @@ def download(request, path, id):
         with open(file_path, 'rb') as fh:
             response = HttpResponse(fh.read(), content_type="application/vnd.ms-excel")
             response['Content-Disposition'] = 'inline; filename=' + os.path.basename(file_path)
-            return response
+            return responsex
     raise Http404
 
-class PdfUploadView(LoginRequiredMixin ,View):
-    form_class = PostForm
-    initial = {'key':'value'}
-    template_name = 'template/pdf-form.html'
+def uploadFile(request):
+    if request.method == 'POST':
+        filename = request.POST['filename']
+        owner = request.POST['owner']
+        pdf = request.FILES['pdf']
+        cover = request.FILES['cover']
 
-    def get(self, request, *args, **kwargs):
-        form = self.form_class(initial=self.initial)
-        return render(request, self.template_name, {'form': form})
+        a = Files(filename=filename, owner=owner, pdf=pdf, cover=cover)
+        a.save()
+        messages.success(request, 'Files Submitted successfully!')
+        return redirect('files')
+    else:
+        messages.error(request, 'Files was not Submitted successfully!')
+        return redirect('form')
 
-    def post(self, request, *args, **kwargs):
-        form = self.form_class(request.POST, request.FILES)
-        if form.is_valid():
-            post = form.save(commit=False)
-            post.user = request.user
-            post.save()
-            return redirect('detail')
-        else:
-            form = PostForm()
-        context = {
-            'form': form
-        }
-        return render(request, self.template_name, context)
-
-
-
- 

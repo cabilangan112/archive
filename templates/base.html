@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" type="image/vnd.microsoft.icon">
-    <title>NDMC Library</title>
+    <title>NDMC Archiving</title>
     {% include 'snippets/css.html'%}
   </head>
   <body>
@@ -31,15 +31,14 @@
           </div>
           <div id="navbar" class="navbar-collapse navbar-right collapse">
             <ul class="nav navbar-nav">
-              <li><a href="{% url 'books:books' %}">Books</a></li>
-              <li><a href="{% url 'books:authors' %}">Author</a></li>
-              <li><a href="{% url 'books:genres' %}">Genre</a></li>
+              <li><a href=" ">Books</a></li>
+              <li><a href=" ">Author</a></li>
+              <li><a href=" ">Genre</a></li>
               {% if user.is_authenticated %}
                 {% if request.user.is_staff %}
- 
                   <li><a href="{% url 'user:profile' %}" class="user">Reserve wait List</a></li>
-                  <li><a href="{% url 'user:borrowed' %}" class="user">Reserved Books</a></li>
-                  <li><a href="{% url 'catalog:pdf' %}" class="user">Book Report</a></li>
+                  <li><a href=" " class="user">Reserved Books</a></li>
+                  <li><a href=" " class="user">Book Report</a></li>
                   <li><a href='{% url "logout" %}'><span>Logout<span></a></li>
                 {% else %}
                   <li><a href='{% url "user:detail" user.email %}' class="user">{{ user.email}}</a></li>

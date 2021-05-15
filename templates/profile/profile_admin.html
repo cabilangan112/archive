@@ -1,13 +1,13 @@
-{% load static from staticfiles %}
+{% load static  %}
 {% block content %} 
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Borrowed Books</title>
-  <link href="{% static 'css/user-book.css' %}" rel="stylesheet">
-  <link href="{% static 'css/borrow.css' %}" rel="stylesheet">
-  {% include 'base.html'%}  
-</head>
+  <head>
+    <title>Borrowed Books</title>
+    <link href="{% static 'css/user-book.css' %}" rel="stylesheet">
+    <link href="{% static 'css/borrow.css' %}" rel="stylesheet">
+    {% include 'base.html'%}  
+  </head>
 <body>
   <div class="list">
     <form class='form' method='GET' action='.'>
