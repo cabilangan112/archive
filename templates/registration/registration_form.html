@@ -1,97 +1,177 @@
 {% load static  %}
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>NDMC Archiving | Registration</title>
-    <link rel="stylesheet" href="{% static 'css/register.css' %}">
+{% load static %}
+<!DOCTYPE html>
+<html lang=en>
+  <head> 
+  {% include 'snippets/css.html'%}
+  <title>Archiving</title>
+  <meta charset="utf-8">
+    <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" type="image/vnd.microsoft.icon">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{% static 'css/registration.css' %}">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <title>NDMC Archiving</title>
   </head>
-  {% include 'base.html'%}
   <body>
-    {% block content %}
-    {% if form.errors %}
-    <div class="error_message col-md-12 offset-md-0 alert alert-danger" role="alert">
-      {% for field in form %}
-        {{ field.errors }}
-      {% endfor %}
-    </div>
-    {% endif %}
-    <section class="blog-content-area section-padding-0-100">
-      <div class="card">
-        <div class="comment-form">
-          <h1 class="headline">Registration  for Student: </h1>
-            <form method="post" enctype="multipart/form-data">
-              {% csrf_token %}
-              <div class="row">
-                <div class="col-12">
-                  <div class="form-group">
-                    <td>{{ form.id_number.label_tag }}</td>
-                    <td>{{ form.id_number }}</td>
-                  </div>
-                </div>
-              </div>
-              <div class="col-12">
-                <div class="form-group">
-                  <td>{{ form.last_name.label_tag }}</td>
-                  <td>{{ form.last_name }}</td>
-                </div>
-              </div>
-              <div class="col-12">
-                <div class="form-group">
-                  <td>{{ form.middle_initial.label_tag }}</td>
-                  <td>{{ form.middle_initial }}</td>
-                </div>
-              </div>
-              <div class="col-12">
-                <div class="form-group">
-                  <td>{{ form.first_name.label_tag }}</td>
-                  <td>{{ form.first_name }}</td>
-                </div>
-              </div>
-                <div class="col-12">
-                <div class="form-group">
-                  <td>{{ form.course.label_tag }}</td>
-                  <td>{{ form.course }}</td>
-                </div>
-              </div>  
-              <div class="col-12">
-                <div class="form-group">
-                  <td>{{ form.Year.label_tag }}</td>
-                  <td>{{ form.Year }}</td>
-                </div>
-              </div>
-                <div class="col-12">
-                <div class="form-group">
-                  <td>{{ form.department.label_tag }}</td>
-                  <td>{{ form.department }}</td>
-                </div>
-              </div>
-              <div class="col-12">
-                <div class="form-group">
-                  <td>{{ form.email.label_tag }}</td>
-                  <td>{{ form.email }}</td>
-                </div>
-              </div>
-              <div class="col-12">
-                <div class="form-group">
-                  <td>{{ form.password1.label_tag }}</td>
-                  <td>{{ form.password1 }}</td>
-                </div>
-              </div>
-              <div class="col-12">
-                <div class="form-group">
-                  <td>{{ form.password2.label_tag }}</td>
-                  <td>{{ form.password2 }}</td>
-                </div>
-              </div>
-              <div class="col-12">
-                <button class="login" type="submit" class="btn btn-success btn-lg float-c enter" value="{{ next }}">Sign up</button>
-              </div>
-            </div>
-          </form>
-        </div>
+    <nav class="navbar navbar-expand-custom navbar-mainbg">
+      <img class="ico" alt="Brand" src="{% static '/img/logo.jpeg' %}">
+      <h3 class="navbar-brand navbar-logo">NOTRE DAME OF MIDSAYAP COLLEGE
+      <br>
+      <span>Making a Positive Difference</span></h3>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars text-white"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+          <div class="hori-selector"><div class="left"></div><div class="right"></div></div>
+          <li class="nav-item ">
+            <a class="nav-link" href="javascript:void(0);"><i class="far fa-address-book"></i>Research</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="javascript:void(0);"><i class="far fa-clone"></i>Authors</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="javascript:void(0);"><i class="far fa-calendar-alt"></i>Departments</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="javascript:void(0);"><i class="far fa-chart-bar"></i>Charts</a>
+          </li>
+          <li class="nav-item active ">
+            <a class="nav-link" data-target="#login-modal" href="#login-modal"><i class="far fa-copy"></i>Login</a>
+          </li>
+        </ul>
       </div>
-    </section>
+    </nav>
   </body>
+<div class="container">
+    <div class="row py-5 mt-4 align-items-center">
+        <!-- For Demo Purpose -->
+        <div class="col-md-5 pr-lg-5 mb-5 mb-md-0">
+            <img src="https://res.cloudinary.com/mhmd/image/upload/v1569543678/form_d9sh6m.svg" alt="" class="img-fluid mb-3 d-none d-md-block">
+            <h1>Create an Account</h1>
+            <p class="font-italic text-muted mb-0">Create a minimal registeration page using Bootstrap 4 HTML form elements.</p>
+            <p class="font-italic text-muted">Snippet By <a href="https://bootstrapious.com" class="text-muted">
+                <u>Bootstrapious</u></a>
+            </p>
+        </div>    
+    {% block content %}
+      {% if form.errors %}
+      <div class="error_message col-md-12 offset-md-0 alert alert-danger" role="alert">
+        {% for field in form %}
+          {{ field.errors }}
+        {% endfor %}
+      </div>
+      {% endif %}
+    <div class="col-md-7 col-lg-6 ml-auto">
+      <form  action="{% url 'register' %}">
+        {% csrf_token %}
+        <div class="row">
+          <div class="input-group col-lg-6 mb-4">
+            <div class="input-group-prepend">
+              <span class="input-group-text bg-white px-4 border-md border-right-0">
+                <i class="fa fa-user text-muted"></i>
+              </span>
+            </div>
+            {{ form.id_number }}
+          </div>
+          <div class="input-group col-lg-6 mb-4">
+            <div class="input-group-prepend">
+              <span class="input-group-text bg-white px-4 border-md border-right-0">
+                <i class="fa fa-user text-muted"></i>
+              </span>
+            </div>
+            {{ form.last_name }}
+          </div>
+          <div class="input-group col-lg-6 mb-4">
+            <div class="input-group-prepend">
+              <span class="input-group-text bg-white px-4 border-md border-right-0">
+                <i class="fa fa-user text-muted"></i>
+              </span>
+            </div>
+            {{ form.middle_initial }}
+          </div>
+          <div class="input-group col-lg-6 mb-4">
+            <div class="input-group-prepend">
+              <span class="input-group-text bg-white px-4 border-md border-right-0">
+                <i class="fa fa-user text-muted"></i>
+              </span>
+            </div>
+            {{ form.first_name }}
+          </div>
+          <div class="input-group col-lg-6 mb-4">
+            <div class="input-group-prepend">
+              <span class="input-group-text bg-white px-4 border-md border-right-0">
+                <i class="fa fa-user text-muted"></i>
+              </span>
+            </div>
+            {{ form.course }}
+          </div>
+          <div class="input-group col-lg-6 mb-4">
+            <div class="input-group-prepend">
+              <span class="input-group-text bg-white px-4 border-md border-right-0">
+                 <i class="fa fa-user text-muted"></i>
+              </span>
+            </div>
+            {{ form.department }}
+          </div>
+          <div class="input-group col-lg-12 mb-4">
+            <div class="input-group-prepend">
+              <span class="input-group-text bg-white px-4 border-md border-right-0">
+                <i class="fa fa-envelope text-muted"></i>
+              </span>
+            </div> 
+            {{ form.email }}
+          </div>
+          <div class="input-group col-lg-6 mb-4">
+            <div class="input-group-prepend">
+              <span class="input-group-text bg-white px-4 border-md border-right-0">
+                <i class="fa fa-lock text-muted"></i>
+              </span>
+            </div>
+             {{ form.password1 }}
+          </div>
+          <div class="input-group col-lg-6 mb-4">
+            <div class="input-group-prepend">
+              <span class="input-group-text bg-white px-4 border-md border-right-0">
+                <i class="fa fa-lock text-muted"></i>
+              </span>
+            </div>
+            {{ form.password2 }}
+          </div>
+            <div class="col-12">
+            <button class="login" type="submit" class="btn btn-success btn-lg float-c enter" value="{{ next }}">Sign up</button>
+            </div>
+          <div class="form-group col-lg-12 mx-auto d-flex align-items-center my-4">
+            <div class="border-bottom w-100 ml-5"></div>
+            <span class="px-2 small text-muted font-weight-bold text-muted">OR</span>
+            <div class="border-bottom w-100 mr-5"></div>
+          </div>
+          <div class="form-group col-lg-12 mx-auto">
+            <a href="#" class="btn btn-primary btn-block py-2 btn-facebook">
+              <i class="fa fa-facebook-f mr-2"></i>
+              <span class="font-weight-bold">Continue with Facebook</span>
+            </a>
+            <a href="#" class="btn btn-primary btn-block py-2 btn-twitter">
+              <i class="fa fa-twitter mr-2"></i>
+              <span class="font-weight-bold">Continue with Twitter</span>
+            </a>
+          </div>
+          <div class="text-center w-100">
+            <p class="text-muted font-weight-bold">Already Registered? <a href="#" class="text-primary ml-2">Login</a></p>
+          </div>
+          <
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+</body>
+
+ 
+</html>
   {% include 'footer.html'%}
 </html>
 {% include 'snippets/js.html' %}

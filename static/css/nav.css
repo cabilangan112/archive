@@ -1,28 +1,48 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto');  
+ 
 * {
 
   margin: 0;
   padding: 0;
 }
+ 
 i {
   margin-right: 10px;
 }
 /*----------multi-level-accordian-menu------------*/
  
 .navbar {
+  font-family: "Times New Roman", Times, serif;
   top: 0;
   overflow: hidden;
   position: fixed;
   width: 100%;
   z-index:999;
+  border-color: #106433;
+  border-color: black;
 }
- 
+
+.navbar img{
+  width: 40px;
+  height: 40px;
+  margin-left: 15px;
+}
+.navbar h3{
+  font-size:10px;
+  font-weight: 700;
+  padding-left: 5px;
+} 
+.navbar span{
+  font: 8px Old English Text MT
+  margin-bottom:0px;
+}
 .navbar-logo{
-  padding: 15px;
-  color: #fff;
+  margin-top: 5px;
+  padding: 5px;
+  color: #106433;
+
 }
 .navbar-mainbg{
-  background-color: #5161ce;
+  background-color: #fff;
   padding: 0px;
 }
 #navbarSupportedContent{
@@ -41,7 +61,7 @@ i {
   float: left;
 }
 #navbarSupportedContent ul li a{
-  color: rgba(255,255,255,0.5);
+  color: #106433;
     text-decoration: none;
     font-size: 15px;
     display: block;
@@ -51,7 +71,7 @@ i {
     position: relative;
 }
 #navbarSupportedContent>ul>li.active>a{
-  color: #5161ce;
+  color: #fff;
   background-color: transparent;
   transition: all 0.7s;
 }
@@ -79,7 +99,7 @@ i {
   left: 0px;
   transition-duration:0.6s;
   transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  background-color: #fff;
+  background-color: #106433;
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
   margin-top: 10px;
@@ -89,7 +109,7 @@ i {
   position: absolute;
   width: 25px;
   height: 25px;
-  background-color: #fff;
+  background-color: #106433;
   bottom: 10px;
 }
 .hori-selector .right{
@@ -105,7 +125,7 @@ i {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background-color: #5161ce;
+    background-color: #fff;
 }
 .hori-selector .right:before{
   bottom: 0;
@@ -177,7 +197,20 @@ i {
   }
   .collapse{
   margin-left: 0px;
-}
+ }
+ .navbar-logo{
+  margin-top: 5px;
+  padding: 5px;
+  margin-left: 0px;
+  color: #106433;
+  }
+
+  .navbar img{
+    width: 40px;
+    height: 40px;
+    margin-left: 15px;
+    margin-right: 10px;
+    }
 }
 
 
