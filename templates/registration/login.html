@@ -36,9 +36,20 @@
           <li class="nav-item">
             <a class="nav-link" href="javascript:void(0);"><i class="far fa-chart-bar"></i>Charts</a>
           </li>
-          <li class="nav-item active">
-            <a class="nav-link" data-target="#login-modal" href="#login-modal"><i class="far fa-copy"></i>Login</a>
-          </li>
+              {% if user.is_authenticated %}
+                {% if request.user.is_staff %}
+                  <li><a href=" " class="user">Reserve List</a></li>
+                  <li><a href=" ">Reserved Books</a></li>
+                  <li><a href='{% url "logout" %}'><span>Logout<span></a></li>
+                {% else %}
+                  <li><a href='{% url "user:detail" user.email %}' class="user">{{ user.email}}</a></li>
+                  <li><a href='{% url "logout" %}'><span>Logout<span></a></li>
+                {% endif %}
+              {% else %}  
+            <li class="nav-item">
+              <a class="nav-link"  href='{% url "login" %}'><i class="far fa-copy"></i>Login</a>
+            </li>
+          {% endif %}
         </ul>
       </div>
     </nav>

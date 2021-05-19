@@ -3,6 +3,7 @@ from django.core.validators import RegexValidator
 from django.conf import settings
 from .validators import validate_file_extention
 from django.urls import reverse
+from django.db.models import Q
 from .utils import unique_slug_generator
 from account.models import Course,Department
 User = settings.AUTH_USER_MODEL
@@ -15,6 +16,31 @@ YEAR = (
     ('grad', 'Graduate'),
     
 )
+class FileQuerySet(models.query.QuerySet):
+    def search(self,query): 
+        if query:
+            query = query.strip()
+            return self.filter(
+                Q(title__icontains=query)|
+                Q(author__last_name__icontains=query)|
+                Q(description_icontains=query)|
+                Q(author__last_name__icontains=query)|
+                Q(author__firstname__icontains=query)|
+                Q(author__department__icontains=query)|
+                Q(author__course__icontains=query)|
+                Q(author__Year__icontains=query) 
+
+                ).distinct()
+        return self
+ 
+class FileManager(models.Manager):
+    def get_queryset(self):
+        return FileQuerySet(self.model, using=self._db)
+
+    def search(self, query):
+        return self.get_queryset().search(query)
+
+
 
 def upload_location(instance, filename):
     return "%s/%s" %(instance.id, filename)
@@ -65,6 +91,8 @@ class Post(models.Model):
     file           = models.FileField(null=True,validators=[PathAndRename])
     date_modified  = models.DateTimeField(auto_now=True)
     slug           = models.SlugField(null=True, blank=True)
+
+    objects = FileManager()
 
     def __str__(self):
         return '{}'.format(self.title)
