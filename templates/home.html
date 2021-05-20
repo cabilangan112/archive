@@ -24,7 +24,7 @@
         <ul class="navbar-nav ml-auto">
           <div class="hori-selector"><div class="left"></div><div class="right"></div></div>
           <li class="nav-item active">
-            <a class="nav-link" href="javascript:void(0);"><i class="far fa-address-book"></i>Research Documents</a>
+            <a class="nav-link" href="{% url 'file:post' %}"><i class="far fa-address-book"></i>Research Documents</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="javascript:void(0);"><i class="far fa-clone"></i>Authors</a>
@@ -83,14 +83,18 @@
     <div class="container">
       <div class="card-deck">
         {% for card in file %}
-        <div class="card">
-          <img class="card-img-top" src="{{ MEDIA_URL }}{{ card.cover.url }}" alt="Card image cap">
-          <div class="card-body">
-            <h5 class="card-title">{{ card.title }}</h5>
-            <p class="card-text">{{ card.descriptionsafe|truncatewords:"50"|linebreaks }}</p>
-            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+          {% if card.approve %}
+          <div class="card">
+            <img class="card-img-top" src="{{ MEDIA_URL }}{{ card.cover.url }}" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">{{ card.title }}</h5>
+              <p class="card-text">{{ card.description |truncatewords:"20"|linebreaks }}</p>
+              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
           </div>
-        </div>
+          {% else %}
+            <h5 class="card-title">No PDP uploaded</h5>
+          {% endif %}
         {% endfor %}
       </div>
     </div>

@@ -1,61 +1,54 @@
-/*
-*
-* ==========================================
-* CUSTOM UTIL CLASSES
-* ==========================================
-*
-*/
-
-.border-md {
-    border-width: 2px;
+body { 
+  background-color: #f5f5f5;
 }
 
-.btn-facebook {
-    background: #405D9D;
-    border: none;
+.form-wrapper {
+  max-width: 30%;
+  min-width: 300px;
+  padding: 50px 30px 50px 30px;
+  margin: 50px auto;   
+  background-color: #ffffff;
+  border-radius: 5px;
+  box-shadow: 0 15px 35px rgba(50,50,93,.1),0 5px 15px rgba(0,0,0,.07);
 }
 
-.btn-facebook:hover, .btn-facebook:focus {
-    background: #314879;
+.form-group {
+  position:relative;  
+
+  & + .form-group {
+    margin-top: 30px;
+  }
 }
 
-.btn-twitter {
-    background: #42AEEC;
-    border: none;
+.form-label {
+  position: absolute;
+  left: 0;
+  top: 10px;
+  color: #999;
+  background-color: #fff;
+  z-index: 10;
+  transition: transform 150ms ease-out, font-size 150ms ease-out;
 }
 
-.btn-twitter:hover, .btn-twitter:focus {
-    background: #1799e4;
+.focused .form-label {
+  transform: translateY(-125%);
+  font-size: .75em;
 }
 
-
-
-/*
-*
-* ==========================================
-* FOR DEMO PURPOSES
-* ==========================================
-*
-*/
-
-body {
-    min-height: 100vh;
+.form-input {
+  position: relative;
+  padding: 12px 0px 5px 0;
+  width: 100%;
+  outline: 0;
+  border: 0;
+  box-shadow: 0 1px 0 0 #e5e5e5;
+  transition: box-shadow 150ms ease-out;
+  
+  &:focus {
+    box-shadow: 0 2px 0 0 blue;
+  }
 }
 
-.form-control:not(select) {
-    padding: 1.5rem 0.5rem;
-}
-
-select.form-control {
-    height: 52px;
-    padding-left: 0.5rem;
-}
-
-.form-control::placeholder {
-    color: #ccc;
-    font-weight: bold;
-    font-size: 0.9rem;
-}
-.form-control:focus {
-    box-shadow: none;
+.form-input.filled {
+  box-shadow: 0 2px 0 0 lightgreen;
 }

@@ -7,67 +7,75 @@
   <meta charset="utf-8">
     <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" type="image/vnd.microsoft.icon">
     <link rel="stylesheet" href="{% static 'css/file.css' %}">
-
+    <link rel="stylesheet" href="{% static 'css/navsnippets.css' %}">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <title>NDMC Archiving</title>
   </head>
   <body>
-    <nav class="navbar navbar-expand-custom navbar-mainbg">
-      <img class="ico" alt="Brand" src="{% static '/img/logo.jpeg' %}">
-      <h3 class="navbar-brand navbar-logo">NOTRE DAME OF MIDSAYAP COLLEGE
-      <br>
-      <span>Making a Positive Difference</span></h3>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <i class="fas fa-bars text-white"></i>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ml-auto">
-          <div class="hori-selector"><div class="left"></div><div class="right"></div></div>
-          <li class="nav-item active">
-            <a class="nav-link" href="javascript:void(0);"><i class="far fa-address-book"></i>Research</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="javascript:void(0);"><i class="far fa-clone"></i>Authors</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="javascript:void(0);"><i class="far fa-calendar-alt"></i>Departments</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="javascript:void(0);"><i class="far fa-chart-bar"></i>Charts</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-target="#login-modal" href="#login-modal"><i class="far fa-copy"></i>Login</a>
-          </li>
-        </ul>
-      </div>
-    </nav>
  
-<div class="bbb_advs">
-<div class="container">
-    <div class="row">
+    <navbar>
+  <div class="navbar nav navbar-fixed-top navbar-inverse">
+    <div class="container-fluid">
+      <div class="v-flex">
+        <div class="navbar-body">
+          <div class="navbar-start">
+            <div class="hamburger-menu">
+              <div class="ic_menu">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+            </div>
+            <img class="logo" src="https://firebasestorage.googleapis.com/v0/b/personal-1c08e.appspot.com/o/logo.svg?alt=media&token=7a322d4e-6088-4647-975a-0f36107a5547">
+          </div>
+          <div class="search">
+            <input type="text" class="search-textbox" placeholder="Search">
+            <a class="ico-btn search-btn"><i class="material-icons ic_search">&#xE8B6;</i></a>
+            <a class="ico-btn clear-btn"><i class="material-icons ic_clear">&#xE14C;</i></a>
+          </div>
+          <div class="navbar-end">
+            <a style="text-transform: uppercase">Get in</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="navbar navbar-fixed-top navbar-inverse tabs paper-shadow-bottom-z-2">
+    <div class="container-fluid">
+      <ul class="navbar-body list-inline">
+        <li class="active"><a class="active">Home</a></li>
+        <li><a>Potion Lab</a></li>
+        <li><a>Stats</a></li>
+        <li><a>System Log Feed</a></li>
+      </ul>
+      <div class="tab-highlighter"></div>
+    </div>
+  </div>
+  <!--2 navbar for pushing 1 above after scrolling (Not Implemented yet.)-->
+</navbar>
+  <div class="bbb_advs">
+    <div class="container">
+      <div class="row">
       {% for card in file %}
         <div class="col-lg-4 bbb_adv_col">
-            <!-- bbb_adv Item -->
-            <div class="bbb_adv d-flex flex-row align-items-center justify-content-start">
-                <div class="bbb_adv_content">
-
-                    <div class="bbb_adv_title"><a href="#">{{ card.title }}</a></div>
-                    <div class="bbb_adv_text">{{ card.description }}</div>
-                    <div class="button">Download</div>
-                </div>
-                <div class="ml-auto">
-                    <div class="bbb_adv_image"><img src="{{ MEDIA_URL }}{{ card.cover.url }}" alt=""></div>
-                </div>
+        <!-- bbb_adv Item -->
+          <div class="bbb_adv d-flex flex-row align-items-center justify-content-start">
+            <div class="bbb_adv_content">
+              <div class="bbb_adv_title"><a href="#">{{ card.title }}</a></div>
+              <div class="bbb_adv_text">{{ card.description|truncatewords:"20"|linebreaks }}</div>
+              <a href="{{card.file.url }}" download="{{card.file.url }}" class="button">Download</a>
             </div>
+            <div class="ml-auto">
+              <div class="bbb_adv_image"><img src="{{ MEDIA_URL }}{{ card.cover.url }}" alt=""></div>
+            </div>
+          </div>
         </div>
-
-         {% endfor %}
-
+      {% endfor %}
+      </div>
     </div>
-</div>
-</div>
+  </div>
   </body>
   <a href="#" id="scroll" style="display: none;"><span></span></a>
   <div class="footer-dark">
@@ -102,6 +110,7 @@
   </div>
 </html>
 <script src="{% static 'js/file.js' %}"></script>
+<script src="{% static 'js/navsnippets.js' %}"></script>
 
 {% include 'snippets/js.html' %}
 

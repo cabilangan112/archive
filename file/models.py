@@ -58,6 +58,7 @@ class PathAndRename(object):
         else:
             filename = '{}.{}'.format(instance.pk,ext)
         return os.path.join(self.path, filename)
+
 path_and_rename = PathAndRename("media/file/")
 
 class Author(models.Model):
@@ -89,10 +90,29 @@ class Post(models.Model):
     date_uploaded  = models.DateTimeField(auto_now_add=True)
     modified       = models.DateTimeField(auto_now=True)
     file           = models.FileField(null=True,validators=[PathAndRename])
-    date_modified  = models.DateTimeField(auto_now=True)
     slug           = models.SlugField(null=True, blank=True)
+    
+    approve        = models.BooleanField(default=False)
+    remove         = models.BooleanField(default=False)
 
     objects = FileManager()
+
+    def __str__(self):
+        return '{}'.format(self.title)
+
+    @property
+    def slug_title(self):
+        return '{}'.format(self.title)
+
+    class Meta:
+        ordering = ['-date_uploaded']
+
+class Memo(models.Model):
+
+    title          = models.CharField(max_length=100)
+    content        = models.FileField(upload_to="content", null=True)
+    date_uploaded  = models.DateTimeField(auto_now_add=True)
+    modified       = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return '{}'.format(self.title)

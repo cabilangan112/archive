@@ -40,138 +40,133 @@
             <a class="nav-link" href="javascript:void(0);"><i class="far fa-chart-bar"></i>Charts</a>
           </li>
           <li class="nav-item active ">
-            <a class="nav-link" data-target="#login-modal" href="#login-modal"><i class="far fa-copy"></i>Login</a>
+            <a class="nav-link" data-target="#login-modal" href='{% url "login" %}'><i class="far fa-copy"></i>Login</a>
           </li>
         </ul>
       </div>
     </nav>
-  </body>
-<div class="container">
-    <div class="row py-5 mt-4 align-items-center">
-        <!-- For Demo Purpose -->
+    <div class="container">
+      <div class="row py-5 mt-4 align-items-center">
         <div class="col-md-5 pr-lg-5 mb-5 mb-md-0">
-            <img src="https://res.cloudinary.com/mhmd/image/upload/v1569543678/form_d9sh6m.svg" alt="" class="img-fluid mb-3 d-none d-md-block">
+            <img src="{% static '/img/reg_gif.gif' %}" alt="" class="img-fluid mb-3 d-none d-md-block">
             <h1>Create an Account</h1>
             <p class="font-italic text-muted mb-0">Create a minimal registeration page using Bootstrap 4 HTML form elements.</p>
             <p class="font-italic text-muted">Snippet By <a href="https://bootstrapious.com" class="text-muted">
-                <u>Bootstrapious</u></a>
+              <u>Bootstrapious</u></a>
             </p>
         </div>    
 
-    <div class="col-md-7 col-lg-6 ml-auto">
-      <form method="post"   nctype="multipart/form-data">
-        {% csrf_token %}
-        <div class="row">
-          <div class="input-group col-lg-6 mb-4">
-            <div class="input-group-prepend">
-              <span class="input-group-text bg-white px-4 border-md border-right-0">
-                <i class="fa fa-user text-muted"></i>
-              </span>
-            </div>
-            {{ form.id_number }}
-          </div>
-          <div class="input-group col-lg-6 mb-4">
-            <div class="input-group-prepend">
-              <span class="input-group-text bg-white px-4 border-md border-right-0">
-                <i class="fa fa-user text-muted"></i>
-              </span>
-            </div>
-            {{ form.last_name }}
-          </div>
-          <div class="input-group col-lg-6 mb-4">
-            <div class="input-group-prepend">
-              <span class="input-group-text bg-white px-4 border-md border-right-0">
-                <i class="fa fa-user text-muted"></i>
-              </span>
-            </div>
-            {{ form.middle_initial }}
-          </div>
-          <div class="input-group col-lg-6 mb-4">
-            <div class="input-group-prepend">
-              <span class="input-group-text bg-white px-4 border-md border-right-0">
-                <i class="fa fa-user text-muted"></i>
-              </span>
-            </div>
-            {{ form.first_name }}
-          </div>
-                    <div class="input-group col-lg-6 mb-4">
-            <div class="input-group-prepend">
-              <span class="input-group-text bg-white px-4 border-md border-right-0">
-                 <i class="fa fa-user text-muted"></i>
-              </span>
-            </div>
-            {{ form.department }}
-          </div>
-          <div class="input-group col-lg-6 mb-4">
-            <div class="input-group-prepend">
-              <span class="input-group-text bg-white px-4 border-md border-right-0">
-                <i class="fa fa-user text-muted"></i>
-              </span>
-            </div>
-            {{ form.course }}
-          </div>
-            <div class="input-group col-lg-6 mb-4">
-            <div class="input-group-prepend">
-              <span class="input-group-text bg-white px-4 border-md border-right-0">
-                 <i class="fa fa-user text-muted"></i>
-              </span>
-            </div>
-            {{ form.Year }}
-          </div>
+        <div class="col-md-7 col-lg-6 ml-auto">
+          <form method="post" ctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row">
+              <div class="input-group col-lg-6 mb-4">
+                <div class="input-group-prepend">
+                  <span class="input-group-text bg-white px-4 border-md border-right-0">
+                    <i class="fa fa-user text-muted">ID Number :</i>
+                  </span>
+                </div>
+                {{ form.id_number }}
+              </div>
+              <div class="input-group col-lg-6 mb-4">
+                <div class="input-group-prepend">
+                  <span class="input-group-text bg-white px-4 border-md border-right-0">
+                    <i class="fa fa-user text-muted">Last Name :</i>
+                  </span>
+                </div>
+                {{ form.last_name }}
+              </div>
+              <div class="input-group col-lg-6 mb-4">
+                <div class="input-group-prepend">
+                  <span class="input-group-text bg-white px-4 border-md border-right-0">
+                    <i class="fa fa-user text-muted">MI :</i>
+                  </span>
+                </div>
+                {{ form.middle_initial }}
+              </div>
+              <div class="input-group col-lg-6 mb-4">
+                <div class="input-group-prepend">
+                  <span class="input-group-text bg-white px-4 border-md border-right-0">
+                    <i class="fa fa-user text-muted">First Name :</i>
+                  </span>
+                </div>
+                {{ form.first_name }}
+              </div>
+                        <div class="input-group col-lg-6 mb-4">
+                <div class="input-group-prepend">
+                  <span class="input-group-text bg-white px-4 border-md border-right-0">
+                     <i class="fa fa-user text-muted">Department :</i>
+                  </span>
+                </div>
+                {{ form.department }}
+              </div>
+              <div class="input-group col-lg-6 mb-4">
+                <div class="input-group-prepend">
+                  <span class="input-group-text bg-white px-4 border-md border-right-0">
+                    <i class="fa fa-user text-muted">Course : </i>
+                  </span>
+                </div>
+                {{ form.course }}
+              </div>
+                <div class="input-group col-lg-6 mb-4">
+                <div class="input-group-prepend">
+                  <span class="input-group-text bg-white px-4 border-md border-right-0">
+                     <i class="fa fa-user text-muted">Year </i>
+                  </span>
+                </div>
+                {{ form.Year }}
+              </div>
 
-          <div class="input-group col-lg-12 mb-4">
-            <div class="input-group-prepend">
-              <span class="input-group-text bg-white px-4 border-md border-right-0">
-                <i class="fa fa-envelope text-muted"></i>
-              </span>
-            </div> 
-            {{ form.email }}
-          </div>
-          <div class="input-group col-lg-6 mb-4">
-            <div class="input-group-prepend">
-              <span class="input-group-text bg-white px-4 border-md border-right-0">
-                <i class="fa fa-lock text-muted"></i>
-              </span>
+              <div class="input-group col-lg-12 mb-4">
+                <div class="input-group-prepend">
+                  <span class="input-group-text bg-white px-4 border-md border-right-0">
+                    <i class="fa fa-envelope text-muted">Email : </i>
+                  </span>
+                </div> 
+                {{ form.email }}
+              </div>
+              <div class="input-group col-lg-6 mb-4">
+                <div class="input-group-prepend">
+                  <span class="input-group-text bg-white px-4 border-md border-right-0">
+                    <i class="fa fa-lock text-muted">Password</i>
+                  </span>
+                </div>
+                 {{ form.password1 }}
+              </div>
+              <div class="input-group col-lg-6 mb-4">
+                <div class="input-group-prepend">
+                  <span class="input-group-text bg-white px-4 border-md border-right-0">
+                    <i class="fa fa-lock text-muted">Confirm Password</i>
+                  </span>
+                </div>
+                {{ form.password2 }}
+              </div>
+                <div class="col-12">
+                <button class="login" type="submit" class="btn btn-success btn-lg float-c enter" value="{{ next }}">Sign up</button>
+                </div>
+              <div class="form-group col-lg-12 mx-auto d-flex align-items-center my-4">
+                <div class="border-bottom w-100 ml-5"></div>
+                <span class="px-2 small text-muted font-weight-bold text-muted">OR</span>
+                <div class="border-bottom w-100 mr-5"></div>
+              </div>
+             {% block content %}
+              {% if form.errors %}
+              <div class="error_message col-md-12 offset-md-0 alert alert-danger" role="alert">
+                {% for field in form %}
+                  {{ field.errors }}
+                {% endfor %}
+              </div>
+              {% endif %}
+              <div class="text-center w-100">
+                <p class="text-muted font-weight-bold">Already Registered? <a href='{% url "login" %}'class="text-primary ml-2">Login</a></p>
+              </div>
+            {% endblock %}
             </div>
-             {{ form.password1 }}
-          </div>
-          <div class="input-group col-lg-6 mb-4">
-            <div class="input-group-prepend">
-              <span class="input-group-text bg-white px-4 border-md border-right-0">
-                <i class="fa fa-lock text-muted"></i>
-              </span>
-            </div>
-            {{ form.password2 }}
-          </div>
-            <div class="col-12">
-            <button class="login" type="submit" class="btn btn-success btn-lg float-c enter" value="{{ next }}">Sign up</button>
-            </div>
-          <div class="form-group col-lg-12 mx-auto d-flex align-items-center my-4">
-            <div class="border-bottom w-100 ml-5"></div>
-            <span class="px-2 small text-muted font-weight-bold text-muted">OR</span>
-            <div class="border-bottom w-100 mr-5"></div>
-          </div>
-         {% block content %}
-          {% if form.errors %}
-          <div class="error_message col-md-12 offset-md-0 alert alert-danger" role="alert">
-            {% for field in form %}
-              {{ field.errors }}
-            {% endfor %}
-          </div>
-          {% endif %}
-          <div class="text-center w-100">
-            <p class="text-muted font-weight-bold">Already Registered? <a href="" class="text-primary ml-2">Login</a></p>
-          </div>
-        {% endblock %}
+          </form>
         </div>
-      </form>
+      </div>
     </div>
-  </div>
-</div>
-</body>
-
- 
-</html>
+  </body>
   {% include 'footer.html'%}
 </html>
 {% include 'snippets/js.html' %}

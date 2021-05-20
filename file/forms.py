@@ -1,5 +1,5 @@
 from django import forms
-from .models import Post,Department,Author, Course
+from .models import Post,Department,Author, Course,Memo
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.models import User
 from django.forms.widgets import FileInput
@@ -19,6 +19,22 @@ class PostForm(forms.ModelForm):
                 })
         }
 
+class ApprovePostForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        fields = ('title',
+        		  'cover',
+        		  'description',
+        		  'author',
+        		  'file',
+        		  'approve')
+        widgets = {
+            'desciption': forms.Textarea(attrs={
+                'class': 'form-control',
+                'rows': 3
+                })
+        }
+ 
 class DepartmentForm(forms.ModelForm):
 	class Meta:
 		model = Department
@@ -38,3 +54,8 @@ class AuthorForm(forms.ModelForm):
 				  'department',
 				  'course',
 				  'Year')
+
+class MemoForm(forms.ModelForm):
+	class Meta:
+		model = Memo
+		fields = ('title','content')

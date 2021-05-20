@@ -94,7 +94,7 @@ class RegisterView(TemplateView):
 			login(self.request, user,backend='django.contrib.auth.backends.ModelBackend')
 			return redirect("/")
 		return render(self.request, self.template_name, context)
-
+                                       
 def  EditProfileView(request, pk):
     user = get_object_or_404(User, pk=pk)
     if request.method == "POST":
