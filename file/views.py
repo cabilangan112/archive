@@ -24,14 +24,14 @@ class PostView(View):
         file = Post.objects.all().order_by("-title").search(query)
         
         if file.exists():
-            return render(request, "file_list.html",{'file':file})
-        return render(request, "file_list.html",{'file':file})
+            return render(request, "file/file_list.html",{'file':file})
+        return render(request, "file/file_list.html",{'file':file})
 
 class PostDetailView(LoginRequiredMixin,View):
     def get(self, request, title, *args, **kwargs):
         post = get_object_or_404(Post, title=title)
         context = {'post':post,}
-        return render(request, "file_detail.html", context)
+        return render(request, "file/file_detail.html", context)
 
 
 class AuthorView(View):
