@@ -16,7 +16,7 @@ from .forms import UserLoginForm, UserRegisterForm,EditProfileForm,EditPasswordF
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 class ProfileView(LoginRequiredMixin,View):
-    def get(self, request, *args, **kwargs):
+    def get(self, request,*args, **kwargs):
         user = User.objects.all()
         context = {'user':user,}
         return render(request, "profile/profile_list.html", context)

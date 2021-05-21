@@ -1,7 +1,7 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang=en>
-  <head> 
+    <html lang=en>
+    <head> 
     {% include 'snippets/css.html'%}
     <title>Archiving</title>
     <meta charset="utf-8">
@@ -11,7 +11,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <title>NDMC Archiving</title>
-  </head>
+    </head>
   <body>
     <nav class="navbar navbar-expand-custom navbar-mainbg">
       <img class="ico" alt="Brand" src="{% static '/img/logo.jpeg' %}">
@@ -81,28 +81,62 @@
         </div>
       </div><a class="left carousel-control" href="#demo-carousel" role="button" data-slide="prev"><span class="icon-prev" aria-hidden="true"></span><span class="sr-only">Previous</span></a><a class="right carousel-control" href="#demo-carousel" role="button" data-slide="next"><span class="icon-next" aria-hidden="true"></span><span class="sr-only">Next</span></a>
     </div>
-</body>
-  <div class="bbb_advs">
+ 
+<section id="team" class="pb-5">
     <div class="container">
-      <div class="row">
-      {% for card in file %}
-        <div class="col-lg-4 bbb_adv_col">
-        <!-- bbb_adv Item -->
-          <div class="bbb_adv d-flex flex-row align-items-center justify-content-start">
-            <div class="bbb_adv_content">
-              <div class="bbb_adv_title"><a href="#">{{ card.title }}</a></div>
-              <div class="bbb_adv_text">{{ card.description|truncatewords:"20"|linebreaks }}</div>
-              <a href="{{card.file.url }}" download="{{card.file.url }}" class="button">Download</a>
+        <h5 class="section-title h1">Research Documents</h5>
+        <div class="row">
+            {% for card in file %}
+            <div class="col-xs-12 col-sm-6 col-md-4">
+                <div class="image-flip" >
+                    <div class="mainflip flip-0">
+                        <div class="frontside">
+                            <div class="card">
+                                <div class="card-body text-center">
+                                    <p><img class=" img-fluid" src="{{ MEDIA_URL }}{{ card.cover.url }}" alt="card image"></p>
+                                    <h4 class="card-title">{{ card.title }}</h4>
+                                    <p class="card-text">{{ card.description|truncatewords:"20"|linebreaks }}</p>
+                                    <a href="https://www.fiverr.com/share/qb8D02" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="backside">
+                            <div class="card">
+                                <div class="card-body text-center mt-4">
+                                    <h4 class="card-title">{{ card.title }}</h4>
+                                    <p class="card-text">{{ card.description|truncatewords:"30"|linebreaks }}.</p>
+                                    <ul class="list-inline">
+                                        <li class="list-inline-item">
+                                            <a class="social-icon text-xs-center" target="_blank" href="https://www.fiverr.com/share/qb8D02">
+                                                <i class="fa fa-facebook"></i>
+                                            </a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a class="social-icon text-xs-center" target="_blank" href="https://www.fiverr.com/share/qb8D02">
+                                                <i class="fa fa-twitter"></i>
+                                            </a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a class="social-icon text-xs-center" target="_blank" href="https://www.fiverr.com/share/qb8D02">
+                                                <i class="fa fa-skype"></i>
+                                            </a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a class="social-icon text-xs-center" target="_blank" href="https://www.fiverr.com/share/qb8D02">
+                                                <i class="fa fa-google"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="ml-auto">
-              <div class="bbb_adv_image"><img src="{{ MEDIA_URL }}{{ card.cover.url }}" alt=""></div>
-            </div>
-          </div>
+          {% endfor %}
         </div>
-      {% endfor %}
-      </div>
     </div>
-  </div>
+</section>
   </body>
   </body>
   <a href="#" id="scroll" style="display: none;"><span></span></a>
