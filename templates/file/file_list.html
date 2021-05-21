@@ -13,7 +13,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <title>NDMC Archiving</title>
   </head>
- 
     <nav class="navbar navbar-expand-custom navbar-mainbg">
       <img class="ico" alt="Brand" src="{% static '/img/logo.jpeg' %}">
       <h3 class="navbar-brand navbar-logo">NOTRE DAME OF MIDSAYAP COLLEGE
@@ -55,7 +54,7 @@
         </ul>
       </div>
     </nav>
-     <body>
+  <body>
 <div class="page-wrapper chiller-theme toggled">
   <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
     <i class="fas fa-bars"></i>
@@ -76,12 +75,10 @@
           <img class="img-responsive img-rounded" src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
             alt="User picture">
         </div>
-
         <div class="user-info">
           <span class="user-name">{{ user.first_name}}
             <strong> {{ user.last_name}}</strong>
           </span>
-         
           <span class="user-role">Administrator</span>
           <span class="user-status">
             <i class="fa fa-circle"></i>
@@ -89,12 +86,11 @@
             <span>Online</span>
           </span>
         </div>
- {% else %}
-                <div class="user-pic">
+         {% else %}
+          <div class="user-pic">
           <img class="img-responsive img-rounded" src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
             alt="User picture">
         </div>
-
         <div class="user-info">
           <span class="user-name">{{ user.first_name}}
             <strong>{{ user.last_name}}</strong>
@@ -124,7 +120,6 @@
           </div>
         </div>
       </div>
-      <!-- sidebar-search  -->
       <div class="sidebar-menu">
         <ul>
           <li class="header-menu">
@@ -260,10 +255,7 @@
             </a>
           </li>
         </ul>
-
-      <!-- sidebar-menu  -->
     </div>
-    <!-- sidebar-content  -->
     <div class="sidebar-footer">
       <a href="#">
         <i class="fa fa-bell"></i>

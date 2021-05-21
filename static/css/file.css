@@ -25,6 +25,7 @@ body{
     background-clip: border-box;
     border: 1px solid #e6e4e9;
     border-radius: 8px;
+ 
 }
 
 .card .card-header.no-border {
@@ -313,7 +314,7 @@ body{
 @media screen and (max-width: 991px) {
 .card-margin {
     margin-bottom: 1.875rem;
- 
     right: 0px;
-}
+  }
+ 
 }
