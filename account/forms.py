@@ -13,6 +13,10 @@ from django.contrib.auth import (
 )
  
 from django.shortcuts import get_object_or_404
+GENDER = (
+    ('Male', 'Male'),
+    ('Female', 'Female')
+)
 
 YEAR = (
     ('1st', 'First Year'),
@@ -63,6 +67,7 @@ class UserRegisterForm(forms.Form):
     first_name = forms.CharField(max_length=20,widget=forms.TextInput(attrs={'placeholder': 'Firstname'}))
     last_name  = forms.CharField(max_length=20,widget=forms.TextInput(attrs={'placeholder': 'Lastname'}))
     middle_initial  = forms.CharField(max_length=20,widget=forms.TextInput(attrs={'placeholder': 'Middle Initial'}))
+    gender       = forms.ChoiceField(choices = GENDER)
     course     = forms.ModelChoiceField(queryset=Course.objects.all())
     department = forms.ModelChoiceField(queryset=Department.objects.all())
     Year       = forms.ChoiceField(choices=YEAR)
@@ -77,6 +82,7 @@ class UserRegisterForm(forms.Form):
             id_number  = data['id_number'],
             first_name = data['first_name'],
             last_name  = data['last_name'],
+            gender  =       data['gender'],
             middle_initial  = data['middle_initial'],
             course     = data['course'], 
             Year       = data['Year'],

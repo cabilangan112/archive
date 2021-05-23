@@ -9,6 +9,12 @@ from django.contrib.auth.models import (
      BaseUserManager, AbstractBaseUser,PermissionsMixin
 )
 
+
+GENDER = (
+    ('Male', 'Male'),
+    ('Female', 'Female')
+)
+
 YEAR = (
     ('1st', 'Firs Year'),
     ('2nd', 'Second Year'),
@@ -58,17 +64,18 @@ class User(AbstractBaseUser):
     first_name   = models.CharField(max_length=80)
     last_name    = models.CharField(max_length=80)
     middle_initial = models.CharField(max_length=80)
+    gender       = models.CharField(max_length = 6, choices = GENDER)
     course       = models.ForeignKey(Course, null=True, blank=True, on_delete = models.CASCADE)
     Year         = models.CharField(max_length=30, choices=YEAR, blank=True, default=True)
     department   = models.ForeignKey(Department, null=True, blank=True, on_delete = models.CASCADE)
 
-    Faculty 	 = models.BooleanField(default=False)
+    Faculty      = models.BooleanField(default=False)
     Program_head = models.BooleanField(default=False)
     Dean         = models.BooleanField(default=False)
     is_staff     = models.BooleanField(default=False)
     Students     = models.BooleanField(default=False)
     quality_assurance = models.BooleanField(default=False)
-    is_active 	 = models.BooleanField(default=True)
+    is_active    = models.BooleanField(default=True)
 
     date_joined  = models.DateTimeField(auto_now_add=True) 
     date_updated = models.DateTimeField(auto_now=True)

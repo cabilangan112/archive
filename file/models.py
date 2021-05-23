@@ -21,14 +21,8 @@ class FileQuerySet(models.query.QuerySet):
         if query:
             query = query.strip()
             return self.filter(
-                Q(title__icontains=query)|
-                Q(author__last_name__icontains=query)|
-                Q(description_icontains=query)|
-                Q(author__last_name__icontains=query)|
-                Q(author__firstname__icontains=query)|
-                Q(author__department__icontains=query)|
-                Q(author__course__icontains=query)|
-                Q(author__Year__icontains=query) 
+                Q(title__icontains=query)
+ 
 
                 ).distinct()
         return self

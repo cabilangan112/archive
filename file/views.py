@@ -18,7 +18,7 @@ class HomeView(View):
         context = {'file':file,}
         return render(request, "home.html", context)
 
-class PostView(View):
+class PostView(LoginRequiredMixin,View):
     def get(self, request, *args, **kwargs):
         query = self.request.GET.get('q')
         file = Post.objects.all().order_by("-title").search(query)
@@ -29,12 +29,12 @@ class PostView(View):
 
 class PostDetailView(LoginRequiredMixin,View):
     def get(self, request, title, *args, **kwargs):
-        post = get_object_or_404(Post, title=title)
-        context = {'post':post,}
+        file = get_object_or_404(Post, title=title)
+        context = {'file':file,}
         return render(request, "file/file_detail.html", context)
 
 
-class AuthorView(View):
+class AuthorView(LoginRequiredMixin,View):
     def get(self, request, *args, **kwargs):
         query = self.request.GET.get('q')
         author = Author.objects.all().order_by("-title").search(query)

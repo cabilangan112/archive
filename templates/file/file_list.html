@@ -2,18 +2,19 @@
 <!DOCTYPE html>
 <html lang=en>
   <head> 
-  {% include 'snippets/css.html'%}
-  <title>Archiving</title>
+    {% include 'snippets/css.html'%}
   <meta charset="utf-8">
     <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" type="image/vnd.microsoft.icon">
     <link rel="stylesheet" href="{% static 'css/file.css' %}">
     <link rel="stylesheet" href="{% static 'css/navsnippets.css' %}">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <title>NDMC Archiving</title>
+ <script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+<script src="{% static 'js/popper.min.js' %}"></script> 
+
+    <title>NDMC Archiving</title>
   </head>
-    <nav class="navbar navbar-expand-custom navbar-mainbg">
+     <nav class="navbar navbar-expand-custom navbar-mainbg">
       <img class="ico" alt="Brand" src="{% static '/img/logo.jpeg' %}">
       <h3 class="navbar-brand navbar-logo">NOTRE DAME OF MIDSAYAP COLLEGE
       <br>
@@ -24,6 +25,9 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto">
           <div class="hori-selector"><div class="left"></div><div class="right"></div></div>
+          <li class="nav-item  ">
+            <a class="nav-link" href="{% url 'home' %}"><i class="far fa-address-book"></i>Home</a>
+          </li>
           <li class="nav-item active">
             <a class="nav-link" href="{% url 'file:post' %}"><i class="far fa-address-book"></i>Research Documents</a>
           </li>
@@ -38,8 +42,7 @@
           </li>
               {% if user.is_authenticated %}
                 {% if request.user.is_staff %}
-                  <li><a href=" " class="user">Reserve List</a></li>
-                  <li><a href=" ">Reserved Books</a></li>
+
                   <li><a href='{% url "logout" %}'><span>Logout<span></a></li>
                 {% else %}
                   <li><a href='{% url "user:detail" user.email %}' class="user">{{ user.email}}</a></li>
@@ -67,7 +70,6 @@
           <i class="fas fa-times"></i>
         </div>
       </div>
-
       <div class="sidebar-header">
       {% if user.is_authenticated %}
           {% if request.user.is_staff %}
@@ -110,14 +112,16 @@
       <!-- sidebar-header  -->
       <div class="sidebar-search">
         <div>
+                <form class='form' method='GET' action='.'>
           <div class="input-group">
-            <input type="text" class="form-control search-menu" placeholder="Search...">
+            <input type="text" class="form-control search-menu" placeholder="Search..." name='q' value='{{ request.GET.q }}'>
             <div class="input-group-append">
               <span class="input-group-text">
-                <i class="fa fa-search" aria-hidden="true"></i>
+                     <button class='fa fa-search' aria-hidden="false" type='submit'></button> 
               </span>
             </div>
           </div>
+        </form>
         </div>
       </div>
       <div class="sidebar-menu">
@@ -277,8 +281,9 @@
 </nav>
   <div class="container cont">
   <div class="row">
+
           {% for card in file %}
-      <div class="col-lg-4">
+      <div class="col-lg-4 margi-card">
    
           <div class="card card-margin">
               <div class="card-header no-border">
@@ -300,9 +305,11 @@
                           <li class="widget-49-meeting-item"><span>{{ card.description|truncatewords:"20"|linebreaks }}</span></li>
  
                       </ol>
-                      <div class="widget-49-meeting-action">
-                          <a href="#" class="btn btn-sm btn-flash-border-primary">View All</a>
+                      <div class="download">
+                          <a class="link" href='{% url "file:detail"  card.title%}'  >Detail</a>
+       
                       </div>
+                  
                   </div>
               </div>
           </div>
@@ -319,7 +326,6 @@
 </html>
 <script src="{% static 'js/file.js' %}"></script>
 <script src="{% static 'js/navsnippets.js' %}"></script>
-
 {% include 'snippets/js.html' %}
 
  

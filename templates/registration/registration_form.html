@@ -6,14 +6,13 @@
 <html lang=en>
   <head> 
   {% include 'snippets/css.html'%}
-  <title>Archiving</title>
   <meta charset="utf-8">
     <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" type="image/vnd.microsoft.icon">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="{% static 'css/registration.css' %}">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <title>NDMC Archiving</title>
+  <script src="{% static 'js/jquery.min.js' %}"></script>
+  <script src="{% static 'js/popper.min.js' %}"></script>
+  <title>NDMC Archiving | Registration</title>
   </head>
   <body>
     <nav class="navbar navbar-expand-custom navbar-mainbg">
@@ -107,6 +106,14 @@
                   </span>
                 </div>
                 {{ form.course }}
+              </div>
+              <div class="input-group col-lg-6 mb-4">
+                <div class="input-group-prepend">
+                  <span class="input-group-text bg-white px-4 border-md border-right-0">
+                    <i class="fa fa-user text-muted">Gender : </i>
+                  </span>
+                </div>
+                {{ form.gender }}
               </div>
                 <div class="input-group col-lg-6 mb-4">
                 <div class="input-group-prepend">

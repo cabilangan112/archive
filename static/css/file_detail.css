@@ -4,11 +4,13 @@ body{
  
     margin-top:90px;
 }
- 
+
 .card-margin {
-    margin-bottom: 1.875rem;
-    right: -120px;
-    margin: 10px;
+  margin-bottom: 1.875rem;
+  right: -120px;
+  margin: 10px;
+  width: 900px;
+  height: 500px;
 }
 .row{
   margin-left: 100px;

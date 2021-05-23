@@ -1,4 +1,4 @@
- 
+
 * {
 
   margin: 0;
@@ -17,8 +17,8 @@ i {
   position: fixed;
   width: 100%;
   z-index:999;
-  border-color: #106433;
-  border-color: black;
+ 
+  b
 }
 
 .navbar img{
@@ -214,3 +214,23 @@ i {
 }
 
 
+.navar-toggler{
+  position: relative;
+  float: right;
+  padding: 9px 10px;
+  margin-top: 8px;
+  margin-right: 15px;
+  margin-bottom: 8px;
+  background-color: #106433;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+.navbar-toggler {
+    border-color: #106433;
+    margin-top: 2em;
+    display: block;
+    width: 22px;
+    height: 2px;
+    border-radius: 1px;
+}

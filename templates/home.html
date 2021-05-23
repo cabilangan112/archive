@@ -7,7 +7,8 @@
     <meta charset="utf-8">
       <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" type="image/vnd.microsoft.icon">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="{% static 'css/file_home.css' %}">
+    <link rel="stylesheet" href="{% static 'css/file_list.css' %}">
+        <link rel="stylesheet" href="{% static 'css/home.css' %}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <title>NDMC Archiving</title>
@@ -18,13 +19,17 @@
       <h3 class="navbar-brand navbar-logo">NOTRE DAME OF MIDSAYAP COLLEGE
       <br>
       <span>Making a Positive Difference</span></h3>
+      
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <i class="fas fa-bars text-white"></i>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto">
           <div class="hori-selector"><div class="left"></div><div class="right"></div></div>
-          <li class="nav-item active">
+          <li class="nav-item active ">
+            <a class="nav-link" href="{% url 'home' %}"><i class="far fa-address-book"></i>Home</a>
+          </li> 
+          <li class="nav-item">
             <a class="nav-link" href="{% url 'file:post' %}"><i class="far fa-address-book"></i>Research Documents</a>
           </li>
           <li class="nav-item">
@@ -38,8 +43,6 @@
           </li>
               {% if user.is_authenticated %}
                 {% if request.user.is_staff %}
-                  <li><a href=" " class="user">Reserve List</a></li>
-                  <li><a href=" ">Reserved Books</a></li>
                   <li><a href='{% url "logout" %}'><span>Logout<span></a></li>
                 {% else %}
                   <li><a href='{% url "user:detail" user.email %}' class="user">{{ user.email}}</a></li>
@@ -81,62 +84,42 @@
         </div>
       </div><a class="left carousel-control" href="#demo-carousel" role="button" data-slide="prev"><span class="icon-prev" aria-hidden="true"></span><span class="sr-only">Previous</span></a><a class="right carousel-control" href="#demo-carousel" role="button" data-slide="next"><span class="icon-next" aria-hidden="true"></span><span class="sr-only">Next</span></a>
     </div>
+ <div class="container cont">
+  <div class="row">
+          {% for card in file %}
+      <div class="col-lg-3">
+   
+          <div class="card card-margin">
+              <div class="card-header no-border">
+                  <h5 class="card-title"></h5>
+              </div>
+              <div class="card-body pt-0">
+                  <div class="widget-49">
+                      <div class="widget-49-title-wrapper">
+                          <div class="widget-49-date-primary">
+                              <span class="widget-49-date-day">09</span>
+                              <span class="widget-49-date-month">apr</span>
+                          </div>
+                          <div class="widget-49-meeting-info">
+                              <span class="widget-49-pro-title">{{ card.title }}</span>
+                              <span class="widget-49-meeting-time">12:00 to 13.30 Hrs</span>
+                          </div>
+                      </div>
+                      <ol class="widget-49-meeting-points">
+                          <li class="widget-49-meeting-item"><span>{{ card.description|truncatewords:"20"|linebreaks }}</span></li>
  
-<section id="team" class="pb-5">
-    <div class="container">
-        <h5 class="section-title h1">Research Documents</h5>
-        <div class="row">
-            {% for card in file %}
-            <div class="col-xs-12 col-sm-6 col-md-4">
-                <div class="image-flip" >
-                    <div class="mainflip flip-0">
-                        <div class="frontside">
-                            <div class="card">
-                                <div class="card-body text-center">
-                                    <p><img class=" img-fluid" src="{{ MEDIA_URL }}{{ card.cover.url }}" alt="card image"></p>
-                                    <h4 class="card-title">{{ card.title }}</h4>
-                                    <p class="card-text">{{ card.description|truncatewords:"20"|linebreaks }}</p>
-                                    <a href="https://www.fiverr.com/share/qb8D02" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="backside">
-                            <div class="card">
-                                <div class="card-body text-center mt-4">
-                                    <h4 class="card-title">{{ card.title }}</h4>
-                                    <p class="card-text">{{ card.description|truncatewords:"30"|linebreaks }}.</p>
-                                    <ul class="list-inline">
-                                        <li class="list-inline-item">
-                                            <a class="social-icon text-xs-center" target="_blank" href="https://www.fiverr.com/share/qb8D02">
-                                                <i class="fa fa-facebook"></i>
-                                            </a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a class="social-icon text-xs-center" target="_blank" href="https://www.fiverr.com/share/qb8D02">
-                                                <i class="fa fa-twitter"></i>
-                                            </a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a class="social-icon text-xs-center" target="_blank" href="https://www.fiverr.com/share/qb8D02">
-                                                <i class="fa fa-skype"></i>
-                                            </a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a class="social-icon text-xs-center" target="_blank" href="https://www.fiverr.com/share/qb8D02">
-                                                <i class="fa fa-google"></i>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                      </ol>
+                      <div class="widget-49-meeting-action">
+                          <a class="link" href='{% url "file:detail"  card.title%}'  >View All</a>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+
           {% endfor %}
-        </div>
-    </div>
-</section>
+  </div>
+</div>
   </body>
   </body>
   <a href="#" id="scroll" style="display: none;"><span></span></a>

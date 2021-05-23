@@ -2,18 +2,15 @@
 <!DOCTYPE html>
 <html lang=en>
   <head> 
-  {% include 'snippets/css.html'%}
-  <title>Archiving</title>
-  <meta charset="utf-8">
+    {% include 'snippets/css.html'%}
+    <title>NDMC Archiving | Login</title>
+    <meta charset="utf-8">
     <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" type="image/vnd.microsoft.icon">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="{% static 'css/login.css' %}">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <title>NDMC Archiving</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'css/login.css' %}"> 
   </head>
   <body>
-    <nav class="navbar navbar-expand-custom navbar-mainbg">
+ <nav class="navbar navbar-expand-custom navbar-mainbg">
       <img class="ico" alt="Brand" src="{% static '/img/logo.jpeg' %}">
       <h3 class="navbar-brand navbar-logo">NOTRE DAME OF MIDSAYAP COLLEGE
       <br>
@@ -24,8 +21,11 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto">
           <div class="hori-selector"><div class="left"></div><div class="right"></div></div>
-          <li class="nav-item ">
-            <a class="nav-link" href="javascript:void(0);"><i class="far fa-address-book"></i>Research</a>
+          <li class="nav-item  ">
+            <a class="nav-link" href="{% url 'home' %}"><i class="far fa-address-book"></i>Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'file:post' %}"><i class="far fa-address-book"></i>Research Documents</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="javascript:void(0);"><i class="far fa-clone"></i>Authors</a>
@@ -34,25 +34,26 @@
             <a class="nav-link" href="javascript:void(0);"><i class="far fa-calendar-alt"></i>Departments</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="javascript:void(0);"><i class="far fa-chart-bar"></i>Charts</a>
+            <a class="nav-link" href="javascript:void(0);"><i class="far fa-chart-bar"></i>Memo</a>
           </li>
               {% if user.is_authenticated %}
                 {% if request.user.is_staff %}
-                  <li><a href=" " class="user">Reserve List</a></li>
-                  <li><a href=" ">Reserved Books</a></li>
+
                   <li><a href='{% url "logout" %}'><span>Logout<span></a></li>
                 {% else %}
                   <li><a href='{% url "user:detail" user.email %}' class="user">{{ user.email}}</a></li>
                   <li><a href='{% url "logout" %}'><span>Logout<span></a></li>
                 {% endif %}
               {% else %}  
-            <li class="nav-item active">
+            <li class="nav-item  active">
               <a class="nav-link"  href='{% url "login" %}'><i class="far fa-copy"></i>Login</a>
             </li>
           {% endif %}
+         
         </ul>
       </div>
     </nav>
+  <body>
     {% block content %}
     <form method="post" action="{% url 'login' %}">
       {% csrf_token %}

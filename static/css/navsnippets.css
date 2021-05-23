@@ -60,17 +60,21 @@ body {
 }
 
 /*----------------page-wrapper----------------*/
-
+.sidebar-wrapper{
+  margin-top: 60px;
+}
 .page-wrapper {
+
   height: 100vh;
 }
 
 .page-wrapper .theme {
   width: 40px;
-  height: 40px;
+  height: 100%;
   display: inline-block;
   border-radius: 4px;
   margin: 2px;
+  margin-top: 60px;
 }
 
 .page-wrapper .theme.chiller-theme {
@@ -92,7 +96,7 @@ body {
 #show-sidebar {
   position: fixed;
   left: 0;
-  top: 60px;
+  margin-top: 0px;
   border-radius: 0 4px 4px 0px;
   width: 35px;
   transition-delay: 0.3s;
@@ -103,11 +107,11 @@ body {
 /*----------------sidebar-wrapper----------------*/
 
 .sidebar-wrapper {
-  width: 260px;
+  width: 300px;
   height: 100%;
   max-height: 100%;
   position: fixed;
-  top: 60px;
+  top: 0px;
   left: -300px;
   z-index: 999;
 }
@@ -466,9 +470,10 @@ body {
 }
 
 .chiller-theme .sidebar-footer {
-    background: #3a3f48;
-    box-shadow: 0px -1px 5px #282c33;
-    border-top: 1px solid #464a52;
+ 
+  background: #3a3f48;
+  box-shadow: 0px -1px 5px #282c33;
+  border-top: 1px solid #464a52;
 }
 
 .chiller-theme .sidebar-footer>a:first-child {
@@ -477,4 +482,17 @@ body {
 
 .chiller-theme .sidebar-footer>a:last-child {
     border-right: none;
+}
+.sidebar-footer {
+  width: 22%;
+  position:fixed;
+
+}
+@media screen and (max-width: 991px) {
+  .sidebar-footer {
+    width: 66%;
+    position:fixed;
+
+  }
+   
 }
