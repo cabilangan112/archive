@@ -8,7 +8,7 @@ class PostForm(forms.ModelForm):
     class Meta:
         model = Post
         fields = ('title',
-        		  'cover',
+        		  'type_documents',
         		  'description',
         		  'author',
         		  'file')
@@ -23,7 +23,7 @@ class ApprovePostForm(forms.ModelForm):
     class Meta:
         model = Post
         fields = ('title',
-        		  'cover',
+        		  'type_documents',
         		  'description',
         		  'author',
         		  'file',

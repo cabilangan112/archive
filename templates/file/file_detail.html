@@ -40,19 +40,7 @@
           <li class="nav-item">
             <a class="nav-link" href="javascript:void(0);"><i class="far fa-chart-bar"></i>Memo</a>
           </li>
-              {% if user.is_authenticated %}
-                {% if request.user.is_staff %}
-
-                  <li><a href='{% url "logout" %}'><span>Logout<span></a></li>
-                {% else %}
-                  <li><a href='{% url "user:detail" user.email %}' class="user">{{ user.email}}</a></li>
-                  <li><a href='{% url "logout" %}'><span>Logout<span></a></li>
-                {% endif %}
-              {% else %}  
-            <li class="nav-item">
-              <a class="nav-link"  href='{% url "login" %}'><i class="far fa-copy"></i>Login</a>
-            </li>
-          {% endif %}
+ 
          
         </ul>
       </div>
@@ -111,18 +99,7 @@
         {% endif %}
       </div>
       <!-- sidebar-header  -->
-      <div class="sidebar-search">
-        <div>
-          <div class="input-group">
-            <input type="text" class="form-control search-menu" placeholder="Search...">
-            <div class="input-group-append">
-              <span class="input-group-text">
-                <i class="fa fa-search" aria-hidden="true"></i>
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
+ 
       <div class="sidebar-menu">
         <ul>
           <li class="header-menu">
@@ -131,46 +108,16 @@
           <li class="sidebar-dropdown">
             <a href="#">
               <i class="fa fa-tachometer-alt"></i>
-              <span>Dashboard</span>
-              <span class="badge badge-pill badge-warning">New</span>
+              <span> User List</span>
             </a>
-            <div class="sidebar-submenu">
-              <ul>
-                <li>
-                  <a href="#">Dashboard 1
-                    <span class="badge badge-pill badge-success">Pro</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">Dashboard 2</a>
-                </li>
-                <li>
-                  <a href="#">Dashboard 3</a>
-                </li>
-              </ul>
-            </div>
+ 
           </li>
           <li class="sidebar-dropdown">
             <a href="#">
               <i class="fa fa-shopping-cart"></i>
-              <span>E-commerce</span>
-              <span class="badge badge-pill badge-danger">3</span>
+              <span><strong>{{ user.email}}</strong></span>
             </a>
-            <div class="sidebar-submenu">
-              <ul>
-                <li>
-                  <a href="#">Products
-
-                  </a>
-                </li>
-                <li>
-                  <a href="#">Orders</a>
-                </li>
-                <li>
-                  <a href="#">Credit cart</a>
-                </li>
-              </ul>
-            </div>
+ 
           </li>
           <li class="sidebar-dropdown">
             <a href="#">
@@ -200,29 +147,13 @@
           <li class="sidebar-dropdown">
             <a href="#">
               <i class="fa fa-chart-line"></i>
-              <span>Charts</span>
+              <span>Edit Profile</span>
             </a>
-            <div class="sidebar-submenu">
-              <ul>
-                <li>
-                  <a href="#">Pie chart</a>
-                </li>
-                <li>
-                  <a href="#">Line chart</a>
-                </li>
-                <li>
-                  <a href="#">Bar chart</a>
-                </li>
-                <li>
-                  <a href="#">Histogram</a>
-                </li>
-              </ul>
-            </div>
-          </li>
+ 
           <li class="sidebar-dropdown">
             <a href="#">
               <i class="fa fa-globe"></i>
-              <span>Maps</span>
+              <span>Change Password</span>
             </a>
             <div class="sidebar-submenu">
               <ul>
@@ -260,14 +191,7 @@
         </ul>
     </div>
     <div class="sidebar-footer">
-      <a href="#">
-        <i class="fa fa-bell"></i>
-        <span class="badge badge-pill badge-warning notification">3</span>
-      </a>
-      <a href="#">
-        <i class="fa fa-envelope"></i>
-        <span class="badge badge-pill badge-success notification">7</span>
-      </a>
+ 
       <a href="#">
         <i class="fa fa-cog"></i>
         <span class="badge-sonar"></span>
@@ -303,8 +227,8 @@
                           <li class="widget-49-meeting-item"><span>{{ file.description  }}</span></li>
  
                       </ol>
-                      <div class="widget-49-meeting-action">
-                          <a href="{{ file.file.url }}" class="btn btn-sm btn-flash-border-primary">Download</a>
+                       <div class="widget-49-meeting-action">
+                          <a href="{{ file.file.url }}" class="btn btn-sm btn-flash-border-primary">Preview</a>
                       </div>
                   </div>
               </div>

@@ -17,21 +17,16 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 class ProfileView(LoginRequiredMixin,View):
     def get(self, request,*args, **kwargs):
-        user = User.objects.all()
-        context = {'user':user,}
+        prof = User.objects.all()
+        context = {'prof':prof,}
         return render(request, "profile/profile_list.html", context)
 
 class ProfileDetailView(LoginRequiredMixin, View):
     def get(self, request, email, *args, **kwargs):
-        user = get_object_or_404(User, email=email)
-        context = {'user':user,}
+        prof = get_object_or_404(User, email=email)
+        context = {'prof':prof,}
         return render(request, "profile/profile_detail.html", context)
 
-class ProfileReserveView(LoginRequiredMixin,View):
-    def get(self, request, email, *args, **kwargs):
-        user = get_object_or_404(User, email=email)
-        context = {'user':user,}
-        return render(request, "profile/profile-reserve.html", context)
 
 class ProfileAdminView(View):
     def get(self, request,*args, **kwargs):

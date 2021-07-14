@@ -16,6 +16,13 @@ YEAR = (
     ('grad', 'Graduate'),
     
 )
+
+TYPE = (
+    ('Memorandum', 'Memorandum'),
+    ('Research', 'Research'),
+    ('Syllabus', 'Syllabus'),
+    ('Curriculum', 'Curriculum'),
+) 
 class FileQuerySet(models.query.QuerySet):
     def search(self,query): 
         if query:
@@ -69,22 +76,19 @@ class Author(models.Model):
 
     def __str__(self):
         return '{}'.format(self.lastname)
-    @property
-    def slug_title(self):
-        return '{}'.format(self.lastname)   
 
     class Meta:
         ordering = ['-id']
 
 class Post(models.Model):
     title          = models.CharField(max_length=100)
-    cover          = models.FileField(upload_to="cover", null=True)
+    type_documents = models.CharField(max_length=30, choices=YEAR, blank=True, default=True)   
     description    = models.TextField(null=True, blank=True)
     author         = models.ForeignKey(Author, null=True,on_delete=models.CASCADE)
     date_uploaded  = models.DateTimeField(auto_now_add=True)
     modified       = models.DateTimeField(auto_now=True)
-    file           = models.FileField(null=True,validators=[PathAndRename])
-    slug           = models.SlugField(null=True, blank=True)
+    file           = models.FileField(null=True,validators=[PathAndRename] )
+ 
     
     approve        = models.BooleanField(default=False)
     remove         = models.BooleanField(default=False)
@@ -92,10 +96,6 @@ class Post(models.Model):
     objects = FileManager()
 
     def __str__(self):
-        return '{}'.format(self.title)
-
-    @property
-    def slug_title(self):
         return '{}'.format(self.title)
 
     class Meta:
@@ -110,7 +110,7 @@ class Memo(models.Model):
 
     def __str__(self):
         return '{}'.format(self.title)
-
+        
     @property
     def slug_title(self):
         return '{}'.format(self.title)

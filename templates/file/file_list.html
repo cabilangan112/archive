@@ -3,14 +3,14 @@
 <html lang=en>
   <head> 
     {% include 'snippets/css.html'%}
-  <meta charset="utf-8">
+    <meta charset="utf-8">
     <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" type="image/vnd.microsoft.icon">
     <link rel="stylesheet" href="{% static 'css/file.css' %}">
     <link rel="stylesheet" href="{% static 'css/navsnippets.css' %}">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
- <script src="{% static 'js/jquery.min.js' %}"></script>
-<script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
-<script src="{% static 'js/popper.min.js' %}"></script> 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script> 
 
     <title>NDMC Archiving</title>
   </head>
@@ -105,8 +105,7 @@
             <span>Online</span>
           </span>
         </div>
-                {% endif %}
-       
+        {% endif %}
         {% endif %}
       </div>
       <!-- sidebar-header  -->
@@ -125,6 +124,8 @@
         </div>
       </div>
       <div class="sidebar-menu">
+        {% if user.is_authenticated %}
+          {% if request.user.is_staff %}
         <ul>
           <li class="header-menu">
             <span>General</span>
@@ -132,21 +133,21 @@
           <li class="sidebar-dropdown">
             <a href="#">
               <i class="fa fa-tachometer-alt"></i>
-              <span>Dashboard</span>
-              <span class="badge badge-pill badge-warning">New</span>
+              <span>User List</span>
+          
             </a>
             <div class="sidebar-submenu">
               <ul>
                 <li>
-                  <a href="#">Dashboard 1
+                  <a href="#">Faculty
                     <span class="badge badge-pill badge-success">Pro</span>
                   </a>
                 </li>
                 <li>
-                  <a href="#">Dashboard 2</a>
+                  <a href="#">Student</a>
                 </li>
                 <li>
-                  <a href="#">Dashboard 3</a>
+                  <a href="#">Program Head</a>
                 </li>
               </ul>
             </div>
@@ -154,21 +155,21 @@
           <li class="sidebar-dropdown">
             <a href="#">
               <i class="fa fa-shopping-cart"></i>
-              <span>E-commerce</span>
+              <span>File</span>
               <span class="badge badge-pill badge-danger">3</span>
             </a>
             <div class="sidebar-submenu">
               <ul>
                 <li>
-                  <a href="#">Products
+                  <a href="#">File 
 
                   </a>
                 </li>
                 <li>
-                  <a href="#">Orders</a>
+                  <a href="#">Author</a>
                 </li>
                 <li>
-                  <a href="#">Credit cart</a>
+                  <a href="#">Memo</a>
                 </li>
               </ul>
             </div>
@@ -259,20 +260,15 @@
             </a>
           </li>
         </ul>
+          {% endif %}
+        {% endif %}
     </div>
     <div class="sidebar-footer">
       <a href="#">
         <i class="fa fa-bell"></i>
         <span class="badge badge-pill badge-warning notification">3</span>
       </a>
-      <a href="#">
-        <i class="fa fa-envelope"></i>
-        <span class="badge badge-pill badge-success notification">7</span>
-      </a>
-      <a href="#">
-        <i class="fa fa-cog"></i>
-        <span class="badge-sonar"></span>
-      </a>
+ 
       <a href="#">
         <i class="fa fa-power-off"></i>
       </a>

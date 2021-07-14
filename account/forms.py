@@ -147,21 +147,12 @@ class EditPasswordForm(forms.Form):
 
         if password2 != password:
             raise forms.ValidationError('Passwords must match')
-
+ 
 class EditProfileForm(forms.ModelForm):
 
     class Meta:
         model = User
- 
-        fields = [
-            'first_name',
-            'last_name',
-            'course',
-            'middle_initial',
-            'department',
-            'Year'
- 
-            ]
+        fields = "__all__"
 
 class PersonnelUserRegisterForm(forms.Form):
     """
