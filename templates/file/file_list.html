@@ -37,18 +37,16 @@
           <li class="nav-item">
             <a class="nav-link" href="javascript:void(0);"><i class="far fa-calendar-alt"></i>Departments</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="javascript:void(0);"><i class="far fa-chart-bar"></i>Memo</a>
-          </li>
-              {% if user.is_authenticated %}
-                {% if request.user.is_staff %}
-
-                  <li><a href='{% url "logout" %}'><span>Logout<span></a></li>
-                {% else %}
-                  <li><a href='{% url "user:detail" user.email %}' class="user">{{ user.email}}</a></li>
-                  <li><a href='{% url "logout" %}'><span>Logout<span></a></li>
-                {% endif %}
-              {% else %}  
+          {% if user.is_authenticated %}
+            {% if request.user.is_staff %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'file:memo' %}""><i class="far fa-chart-bar"></i>Memo</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'file:curriculum' %}"><i class="far fa-chart-bar"></i>PAASCU Document</a>
+            </li>
+            {% endif %}
+          {% else %}  
             <li class="nav-item">
               <a class="nav-link"  href='{% url "login" %}'><i class="far fa-copy"></i>Login</a>
             </li>
@@ -58,267 +56,46 @@
       </div>
     </nav>
   <body>
-<div class="page-wrapper chiller-theme toggled">
-  <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
-    <i class="fas fa-bars"></i>
-  </a>
-  <nav id="sidebar" class="sidebar-wrapper">
-    <div class="sidebar-content">
-      <div class="sidebar-brand">
-        <a href="#">pro sidebar</a>
-        <div id="close-sidebar">
-          <i class="fas fa-times"></i>
-        </div>
-      </div>
-      <div class="sidebar-header">
-      {% if user.is_authenticated %}
-          {% if request.user.is_staff %}
-        <div class="user-pic">
-          <img class="img-responsive img-rounded" src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
-            alt="User picture">
-        </div>
-        <div class="user-info">
-          <span class="user-name">{{ user.first_name}}
-            <strong> {{ user.last_name}}</strong>
-          </span>
-          <span class="user-role">Administrator</span>
-          <span class="user-status">
-            <i class="fa fa-circle"></i>
-     
-            <span>Online</span>
-          </span>
-        </div>
-         {% else %}
-          <div class="user-pic">
-          <img class="img-responsive img-rounded" src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
-            alt="User picture">
-        </div>
-        <div class="user-info">
-          <span class="user-name">{{ user.first_name}}
-            <strong>{{ user.last_name}}</strong>
-          </span>
-         
-          <span class="user-role">Students</span>
-          <span class="user-status">
-            <i class="fa fa-circle"></i>
-     
-            <span>Online</span>
-          </span>
-        </div>
-        {% endif %}
-        {% endif %}
-      </div>
-      <!-- sidebar-header  -->
-      <div class="sidebar-search">
-        <div>
-                <form class='form' method='GET' action='.'>
-          <div class="input-group">
-            <input type="text" class="form-control search-menu" placeholder="Search..." name='q' value='{{ request.GET.q }}'>
-            <div class="input-group-append">
-              <span class="input-group-text">
-                     <button class='fa fa-search' aria-hidden="false" type='submit'></button> 
-              </span>
-            </div>
-          </div>
-        </form>
-        </div>
-      </div>
-      <div class="sidebar-menu">
-        {% if user.is_authenticated %}
-          {% if request.user.is_staff %}
-        <ul>
-          <li class="header-menu">
-            <span>General</span>
-          </li>
-          <li class="sidebar-dropdown">
-            <a href="#">
-              <i class="fa fa-tachometer-alt"></i>
-              <span>User List</span>
-          
-            </a>
-            <div class="sidebar-submenu">
-              <ul>
-                <li>
-                  <a href="#">Faculty
-                    <span class="badge badge-pill badge-success">Pro</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">Student</a>
-                </li>
-                <li>
-                  <a href="#">Program Head</a>
-                </li>
-              </ul>
-            </div>
-          </li>
-          <li class="sidebar-dropdown">
-            <a href="#">
-              <i class="fa fa-shopping-cart"></i>
-              <span>File</span>
-              <span class="badge badge-pill badge-danger">3</span>
-            </a>
-            <div class="sidebar-submenu">
-              <ul>
-                <li>
-                  <a href="#">File 
-
-                  </a>
-                </li>
-                <li>
-                  <a href="#">Author</a>
-                </li>
-                <li>
-                  <a href="#">Memo</a>
-                </li>
-              </ul>
-            </div>
-          </li>
-          <li class="sidebar-dropdown">
-            <a href="#">
-              <i class="far fa-gem"></i>
-              <span>Components</span>
-            </a>
-            <div class="sidebar-submenu">
-              <ul>
-                <li>
-                  <a href="#">General</a>
-                </li>
-                <li>
-                  <a href="#">Panels</a>
-                </li>
-                <li>
-                  <a href="#">Tables</a>
-                </li>
-                <li>
-                  <a href="#">Icons</a>
-                </li>
-                <li>
-                  <a href="#">Forms</a>
-                </li>
-              </ul>
-            </div>
-          </li>
-          <li class="sidebar-dropdown">
-            <a href="#">
-              <i class="fa fa-chart-line"></i>
-              <span>Charts</span>
-            </a>
-            <div class="sidebar-submenu">
-              <ul>
-                <li>
-                  <a href="#">Pie chart</a>
-                </li>
-                <li>
-                  <a href="#">Line chart</a>
-                </li>
-                <li>
-                  <a href="#">Bar chart</a>
-                </li>
-                <li>
-                  <a href="#">Histogram</a>
-                </li>
-              </ul>
-            </div>
-          </li>
-          <li class="sidebar-dropdown">
-            <a href="#">
-              <i class="fa fa-globe"></i>
-              <span>Maps</span>
-            </a>
-            <div class="sidebar-submenu">
-              <ul>
-                <li>
-                  <a href="#">Google maps</a>
-                </li>
-                <li>
-                  <a href="#">Open street map</a>
-                </li>
-              </ul>
-            </div>
-          </li>
-          <li class="header-menu">
-            <span>Extra</span>
-          </li>
-          <li>
-            <a href="#">
-              <i class="fa fa-book"></i>
-              <span>Documentation</span>
-              <span class="badge badge-pill badge-primary">Beta</span>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <i class="fa fa-calendar"></i>
-              <span>Calendar</span>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <i class="fa fa-folder"></i>
-              <span>Examples</span>
-            </a>
-          </li>
-        </ul>
-          {% endif %}
-        {% endif %}
-    </div>
-    <div class="sidebar-footer">
-      <a href="#">
-        <i class="fa fa-bell"></i>
-        <span class="badge badge-pill badge-warning notification">3</span>
+    <div class="page-wrapper chiller-theme toggled">
+      <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
+        <i class="fas fa-bars"></i>
       </a>
- 
-      <a href="#">
-        <i class="fa fa-power-off"></i>
-      </a>
-    </div>
-  </div>
-</nav>
-  <div class="container cont">
-  <div class="row">
-
-          {% for card in file %}
-      <div class="col-lg-4 margi-card">
-   
-          <div class="card card-margin">
+     {% include 'snippets/sidebar.html'%}
+      <div class="container cont">
+      <div class="row">
+        {% for card in file %}
+          <div class="col-lg-4 margi-card">
+            <div class="card card-margin">
               <div class="card-header no-border">
-                  <h5 class="card-title"></h5>
+                <h5 class="card-title"></h5>
               </div>
               <div class="card-body pt-0">
-                  <div class="widget-49">
-                      <div class="widget-49-title-wrapper">
-                          <div class="widget-49-date-primary">
-                              <span class="widget-49-date-day">09</span>
-                              <span class="widget-49-date-month">apr</span>
-                          </div>
-                          <div class="widget-49-meeting-info">
-                              <span class="widget-49-pro-title">{{ card.title }}</span>
-                              <span class="widget-49-meeting-time">12:00 to 13.30 Hrs</span>
-                          </div>
-                      </div>
-                      <ol class="widget-49-meeting-points">
-                          <li class="widget-49-meeting-item"><span>{{ card.description|truncatewords:"20"|linebreaks }}</span></li>
- 
-                      </ol>
-                      <div class="download">
-                          <a class="link" href='{% url "file:detail"  card.title%}'  >Detail</a>
-       
-                      </div>
-                  
+                <div class="widget-49">
+                  <div class="widget-49-title-wrapper">
+                    <div class="widget-49-date-primary">
+                      <span class="widget-49-date-day">09</span>
+                      <span class="widget-49-date-month">apr</span>
+                    </div>
+                    <div class="widget-49-meeting-info">
+                      <span class="widget-49-pro-title">{{ card.title }}</span>
+                      <span class="widget-49-meeting-time">12:00 to 13.30 Hrs</span>
+                    </div>
                   </div>
+                    <ol class="widget-49-meeting-points">
+                      <li class="widget-49-meeting-item"><span>{{ card.description|truncatewords:"20"|linebreaks }}</span></li>
+                    </ol>
+                    <div class="download">
+                      <a class="link" href='{% url "file:detail"  card.title%}'  >Detail</a>
+                    </div>
+                  </div>
+                </div>
               </div>
-          </div>
-      </div>
-
+            </div>
           {% endfor %}
-  </div>
-</div>
- 
-  </body>
+        </div>
+      </div>
+    </body>
   <a href="#" id="scroll" style="display: none;"><span></span></a>
- 
- 
 </html>
 <script src="{% static 'js/file.js' %}"></script>
 <script src="{% static 'js/navsnippets.js' %}"></script>

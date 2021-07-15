@@ -9,6 +9,9 @@ app_name='file'
 
 urlpatterns = [
     path('', views.PostView.as_view(), name='post'),
+    path('memo', views.Memo.as_view(), name='memo'),
+    path('curriculum', views.Curriculum.as_view(), name='curriculum'),
+    path('Syllabus', views.Syllabus.as_view(), name='syllabus'),
     path('<title>/', views.PostDetailView.as_view(), name='detail'),
  
     url(r'^download/(?P<path>.*)$',serve,{'document_root':settings.MEDIA_ROOT})

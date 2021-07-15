@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  {% include 'snippets/css.html'%}
+  <meta charset="utf-8">
+  <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" type="image/vnd.microsoft.icon">
+  <link rel="stylesheet" href="{% static 'css/file.css' %}">
+  <link rel="stylesheet" href="{% static 'css/navsnippets.css' %}">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="{% static 'js/jquery.min.js' %}"></script>
+  <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+  <script src="{% static 'js/popper.min.js' %}"></script> 
+  <title>NDMC Archiving</title>
+</head>
+     <nav class="navbar navbar-expand-custom navbar-mainbg">
+      <img class="ico" alt="Brand" src="{% static '/img/logo.jpeg' %}">
+      <h3 class="navbar-brand navbar-logo">NOTRE DAME OF MIDSAYAP COLLEGE
+      <br>
+      <span>Making a Positive Difference</span></h3>
+	    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	       <i class="fas fa-bars text-white"></i>
+	    </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+          <div class="hori-selector"><div class="left"></div><div class="right"></div></div>
+          <li class="nav-item  ">
+            <a class="nav-link" href="{% url 'home' %}"><i class="far fa-address-book"></i>Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'file:post' %}"><i class="far fa-address-book"></i>Research Documents</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="javascript:void(0);"><i class="far fa-clone"></i>Authors</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="javascript:void(0);"><i class="far fa-calendar-alt"></i>Departments</a>
+          </li>
+          {% if user.is_authenticated %}
+            {% if request.user.is_staff %}
+            <li class="nav-item active">
+              <a class="nav-link" href="{% url 'file:memo' %}"><i class="far fa-chart-bar"></i>Memo</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'file:curriculum' %}"><i class="far fa-chart-bar"></i>PAASCU Document</a>
+            </li>
+            {% endif %}
+          {% else %}  
+            <li class="nav-item">
+              <a class="nav-link"  href='{% url "login" %}'><i class="far fa-copy"></i>Login</a>
+            </li>
+          {% endif %}
+        </ul>
+      </div>
+    </nav>
+<body>
+    <div class="page-wrapper chiller-theme toggled">
+      <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
+        <i class="fas fa-bars"></i>
+      </a>
+     {% include 'snippets/sidebar.html'%}
+</body>
+</html>
+{% include 'snippets/js.html' %}

@@ -82,7 +82,7 @@ class Author(models.Model):
 
 class Post(models.Model):
     title          = models.CharField(max_length=100)
-    type_documents = models.CharField(max_length=30, choices=YEAR, blank=True, default=True)   
+    type_documents = models.CharField(max_length=30, choices=TYPE , blank=True, default=True)   
     description    = models.TextField(null=True, blank=True)
     author         = models.ForeignKey(Author, null=True,on_delete=models.CASCADE)
     date_uploaded  = models.DateTimeField(auto_now_add=True)

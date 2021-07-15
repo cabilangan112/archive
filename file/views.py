@@ -20,14 +20,35 @@ class HomeView(View):
 
 class  Memo(View):
     def get(self, request, *args, **kwargs):
-        memo= Memo.objects.all()[:1]
-        context = {'memo':memo,}
-        return render(request, "home.html", context)
+        query = self.request.GET.get('q')
+        file = Post.objects.filter(type_documents='Memorandum').order_by("-title").search(query)
+        
+        if file.exists():
+            return render(request, "file/memo.html",{'file':file})
+        return render(request, "file/memo.html",{'file':file})
+
+class  Syllabus(View):
+    def get(self, request, *args, **kwargs):
+        query = self.request.GET.get('q')
+        file = Post.objects.filter(type_documents='Syllabus').order_by("-title").search(query)
+        
+        if file.exists():
+            return render(request, "file/syllabus.html",{'file':file})
+        return render(request, "file/syllabus.html",{'file':file})
+
+class Curriculum(View):
+    def get(self, request, *args, **kwargs):
+        query = self.request.GET.get('q')
+        file = Post.objects.filter(type_documents='Curriculum').order_by("-title").search(query)
+        
+        if file.exists():
+            return render(request, "file/curriculum.html",{'file':file})
+        return render(request, "file/curriculum.html",{'file':file})
 
 class PostView(LoginRequiredMixin,View):
     def get(self, request, *args, **kwargs):
         query = self.request.GET.get('q')
-        file = Post.objects.all().order_by("-title").search(query)
+        file = Post.objects.filter(type_documents='Research').order_by("-title").search(query)
         
         if file.exists():
             return render(request, "file/file_list.html",{'file':file})
