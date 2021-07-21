@@ -27,6 +27,32 @@ class ProfileDetailView(LoginRequiredMixin, View):
         context = {'prof':prof,}
         return render(request, "profile/profile_detail.html", context)
 
+class FacultyView(LoginRequiredMixin,View):
+    def get(self, request,*args, **kwargs):
+        query = self.request.GET.get('q')
+        prof = User.objects.filter(Faculty=True)
+  
+        if prof.exists():
+            return render(request, "profile/faculty_list.html",{'prof':prof,})
+        return render(request, "profile/faculty_list.html",{'prof':prof,})
+
+class StudentView(LoginRequiredMixin,View):
+    def get(self, request,*args, **kwargs):
+        query = self.request.GET.get('q')
+        prof = User.objects.filter(Students=True)
+         
+        if prof.exists(): 
+            return render(request, "profile/student_list.html",{'prof':prof,})
+        return render(request, "profile/student_list.html",{'prof':prof,})
+
+class ProgramView(LoginRequiredMixin,View):
+    def get(self, request,*args, **kwargs):
+        query = self.request.GET.get('q')
+        prof = User.objects.filter(Program_head=True)
+
+        if prof.exists(): 
+            return render(request, "profile/program_list.html",{'prof':prof,})
+        return render(request, "profile/program_list.html",{'prof':prof,})
 
 class ProfileAdminView(View):
     def get(self, request,*args, **kwargs):
@@ -37,11 +63,8 @@ class ProfileAdminView(View):
             return render(request, "profile/profile_admin.html",{'prof':qs,})
         return render(request, "profile/profile_admin.html",{'prof':qs,})
 
-
 class LoginView(TemplateView):
-	"""
-	Display log in page where registered users can log in
-	"""
+
 	template_name = "registration/login.html"
 
 	def get_context_data(self, *args, **kwargs):

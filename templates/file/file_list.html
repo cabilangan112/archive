@@ -73,8 +73,8 @@
                 <div class="widget-49">
                   <div class="widget-49-title-wrapper">
                     <div class="widget-49-date-primary">
-                      <span class="widget-49-date-day">09</span>
-                      <span class="widget-49-date-month">apr</span>
+                      <span class="widget-49-date-day">{{card.date_uploaded | date:'d' }}</span>
+                      <span class="widget-49-date-month">{{card.date_uploaded | date:'b' }}</span>
                     </div>
                     <div class="widget-49-meeting-info">
                       <span class="widget-49-pro-title">{{ card.title }}</span>

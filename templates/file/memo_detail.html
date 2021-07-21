@@ -53,43 +53,44 @@
         </ul>
       </div>
     </nav>
-  <body>
+<body>
     <div class="page-wrapper chiller-theme toggled">
       <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
         <i class="fas fa-bars"></i>
       </a>
      {% include 'snippets/sidebar.html'%}
-      <div class="tweets-container">
-        <div class="card tweets-header">
-          Memorandum
-        </div>
-        {% for card in file %}
-        <div class="card tweet">
-          <a class="author">
-            <img class="avatar" src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg">
-            <span class="name">{{ card.user.first_name }} {{ card.user.last_name }}</span>
-            <span class="username">{{ card.user.email}} </span>
-          </a>
-          <div class="content">
-            <small>{{ card.date_uploaded  | timesince }}, ago </small> 
-          </div>
-          <div class="card summary">
-            <img class="background"  src="{{ card.content.url }}" />
-            <div class="information">
-              <div class="title">{{ card.title}} </div>
-              <div class="description">
-                {{ card.description|truncatewords:"20"|linebreaks }}
-              </div>
-              <div class="domain">
-                <a class="link" href='{% url "file:memo-detail"  card.title%}'  >Detail</a>
-              </div>
+
+<div class="tweets-container">
+  <div class="card tweets-header">
+    Memorandum
+  </div>
+ 
+  <div class="card tweet">
+    <a class="author">
+      <img class="avatar" src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg">
+      <span class="name">{{ file.user.first_name }} {{ file.user.last_name }}</span>
+      <span class="username">{{ file.user.email}} </span>
+    </a>
+    <div class="content">
+    
+     <small>{{ file.date_uploaded  | timesince }}, ago </small> 
+ </div>
+      <a >
+        <div class="card summary">
+          <img class="background"  src="{{ file.content.url }}" />
+          <div class="information">
+            <div class="title">{{ file.title}} </div>
+            <div class="description">{{ card.description }}
             </div>
+ 
           </div>
-          </div>
-             {% endfor %}
         </div>
-   
-      </div>
-  </body>
+      </a>
+    </div>
+ 
+  </div>
+ 
+</div>
+</body>
 </html>
 {% include 'snippets/js.html' %}

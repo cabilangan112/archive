@@ -9,23 +9,29 @@ from django.shortcuts import render, Http404, get_object_or_404, redirect
 from django.views.generic import (ListView,DetailView,CreateView,UpdateView, View)
 from django.contrib.auth.mixins import (LoginRequiredMixin,PermissionRequiredMixin)
 from django.contrib.auth import get_user_model
-from .models import (Post, Department, Author, Course,)
+from .models import (Post, Memo, Department, Author, Course,)
 from .forms import (PostForm, DepartmentForm, CourseForm, AuthorForm)
  
 class HomeView(View):
     def get(self, request, *args, **kwargs):
-        file = Post.objects.all()[:9]
+        file = Post.objects.filter(type_documents='Research').order_by("-title")[:9]
         context = {'file':file,}
         return render(request, "home.html", context)
 
-class  Memo(View):
+class  Memorandum(View):
     def get(self, request, *args, **kwargs):
         query = self.request.GET.get('q')
-        file = Post.objects.filter(type_documents='Memorandum').order_by("-title").search(query)
-        
+        file = Memo.objects.all().order_by("-date_uploaded").search(query)
+
         if file.exists():
             return render(request, "file/memo.html",{'file':file})
         return render(request, "file/memo.html",{'file':file})
+
+class MemoDetailView(LoginRequiredMixin,View):
+    def get(self, request, title, *args, **kwargs):
+        file = get_object_or_404(Memo, title=title)
+        context = {'file':file,}
+        return render(request, "file/memo_detail.html", context)
 
 class  Syllabus(View):
     def get(self, request, *args, **kwargs):
@@ -39,7 +45,7 @@ class  Syllabus(View):
 class Curriculum(View):
     def get(self, request, *args, **kwargs):
         query = self.request.GET.get('q')
-        file = Post.objects.filter(type_documents='Curriculum').order_by("-title").search(query)
+        file = Post.objects.filter(type_documents='Paascu').order_by("-title").search(query)
         
         if file.exists():
             return render(request, "file/curriculum.html",{'file':file})

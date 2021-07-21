@@ -4,6 +4,7 @@ from django.conf import settings
 from .validators import validate_file_extention
 from django.urls import reverse
 from django.db.models import Q
+from account.models import User
 from .utils import unique_slug_generator
 from account.models import Course,Department
 User = settings.AUTH_USER_MODEL
@@ -18,10 +19,10 @@ YEAR = (
 )
 
 TYPE = (
-    ('Memorandum', 'Memorandum'),
+ 
     ('Research', 'Research'),
     ('Syllabus', 'Syllabus'),
-    ('Curriculum', 'Curriculum'),
+    ('Paascu', 'Paascu'),
 ) 
 class FileQuerySet(models.query.QuerySet):
     def search(self,query): 
@@ -102,12 +103,19 @@ class Post(models.Model):
         ordering = ['-date_uploaded']
 
 class Memo(models.Model):
-
+    user           = models.ForeignKey(User, null=True, blank=True, on_delete = models.CASCADE)
     title          = models.CharField(max_length=100)
-    content        = models.FileField(upload_to="content", null=True)
+    content        = models.FileField(upload_to="memo", null=True)
+    description    = models.TextField(null=True, blank=True)
     date_uploaded  = models.DateTimeField(auto_now_add=True)
     modified       = models.DateTimeField(auto_now=True)
 
+
+    approve        = models.BooleanField(default=False)
+    remove         = models.BooleanField(default=False)
+
+    objects        = FileManager()
+    
     def __str__(self):
         return '{}'.format(self.title)
         

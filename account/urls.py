@@ -5,8 +5,10 @@ app_name='account'
 
 urlpatterns = [
     path('', views.ProfileView.as_view(), name='user'),
-
-    path('profiles/', views.ProfileAdminView.as_view(), name='profile'),
+    path('faculty/', views.FacultyView.as_view(), name='faculty'),
+    path('student/', views.StudentView.as_view(), name='student'),
+    path('program_head/', views.ProfileView.as_view(), name='program'),
+    path('profiles/', views.ProgramView.as_view(), name='profile'),
 #   path('borrowed-list/', views.borrowed.as_view(), name='borrowed'),
     path('<email>/', views.ProfileDetailView.as_view(), name='detail'),
 #    path('reserve/<email>/', views.ProfileReserveView.as_view(), name='detail-reserve'),
