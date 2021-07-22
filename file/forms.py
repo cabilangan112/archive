@@ -22,18 +22,9 @@ class PostForm(forms.ModelForm):
 class ApprovePostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ('title',
-        		  'type_documents',
-        		  'description',
-        		  'author',
-        		  'file',
-        		  'approve')
-        widgets = {
-            'desciption': forms.Textarea(attrs={
-                'class': 'form-control',
-                'rows': 3
-                })
-        }
+        fields = ('approve',
+        		  'remove',
+        		  )
  
 class DepartmentForm(forms.ModelForm):
 	class Meta:
@@ -59,3 +50,11 @@ class MemoForm(forms.ModelForm):
 	class Meta:
 		model = Memo
 		fields = ('title','content')
+
+class ApproveMemoForm(forms.ModelForm):
+    class Meta:
+        model = Memo
+        fields = ('approve',
+        		  'remove',
+        		  )
+ 

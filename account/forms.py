@@ -216,3 +216,16 @@ class PersonnelUserRegisterForm(forms.Form):
         if password1 and password2 and password1 != password2:
             raise forms.ValidationError("Passwords don't match")
         return password2
+
+class RuleAssignForm(forms.ModelForm):
+
+    class Meta:
+        model = User
+
+        fields = [
+            'Faculty',
+            'Program_head',
+            'Dean',
+            'quality_assurance',
+            'Students',
+            ]

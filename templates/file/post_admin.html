@@ -1,19 +1,18 @@
 {% load static %}
 <!DOCTYPE html>
  
-<head>
-  {% include 'snippets/css.html'%}
-  <meta charset="utf-8">
-  <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" type="image/vnd.microsoft.icon">
- 
-  <link rel="stylesheet" href="{% static 'css/navsnippets.css' %}">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script src="{% static 'js/jquery.min.js' %}"></script>
-  <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
-  <script src="{% static 'js/popper.min.js' %}"></script> 
-  <link rel="stylesheet" href="{% static 'css/user.css' %}">
-  <title>NDMC Archiving</title>
-</head>
+  <head>
+    {% include 'snippets/css.html'%}
+    <meta charset="utf-8">
+    <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" type="image/vnd.microsoft.icon">
+    <link rel="stylesheet" href="{% static 'css/navsnippets.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script> 
+    <link rel="stylesheet" href="{% static 'css/user.css' %}">
+    <title>NDMC Archiving</title>
+  </head>
  <nav class="navbar navbar-expand-custom navbar-mainbg">
   <img class="ico" alt="Brand" src="{% static '/img/logo.jpeg' %}">
   <h3 class="navbar-brand navbar-logo">NOTRE DAME OF MIDSAYAP COLLEGE
@@ -54,7 +53,6 @@
     </ul>
   </div>
 </nav>
- 
 <body>
   <div class="marg">
       <div class="page-wrapper chiller-theme toggled">
@@ -62,38 +60,37 @@
         <i class="fas fa-bars"></i>
       </a>
      {% include 'snippets/sidebar.html'%}
- <div class="players">
-  <h2> User | List</h2>
-  <div class="header">
-    <div class="player-number">ID Number</div>
-    <div class="player-name">Name</div>
-    <div class="player-city">Email</div>
-    <div class="player-country">Departmen</div>
-    <div class="player-value">Course </div>
-    <div class="player-stats">Year</div>
-  </div>
- 
+     <div class="players">
+      <h2> File | List</h2>
+      <div class="header">
+        <div class="player-number">ID Number</div>
+        <div class="player-name">Title</div>
+        <div class="player-city">Document Type</div>
+        <div class="player-country">Author</div>
+        <div class="player-value">Date Uploaded </div>
+      </div>
       {% for user in qs %}
-  <div class="player">
-
-        <div class="player-number" data-title="Number: ">{{user.id_number }}</div>
-        <div class="player-name" data-title="Name: "> <a  class="link" href="{% url "account:assign_profile" user.email%}">
-        {{user.last_name}} {{user.first_name}} </a></div>
-        <div class="player-city" data-title="City: ">{{user.email }}</div>
-        <div class="player-country" data-title="Country: ">{{user.department}}</div>
-        <div class="player-value" data-title="Value: ">{{user.course }}</div>
-        <div class="player-stats" data-title="Stats: ">{{user.Year }}</div>
-  </div>
-        {% endfor %}
- 
-            
-</div>
+        <div class="player">
+        <div class="player-number" data-title="Number: ">{{user.pk }}</div>
+        <div class="player-name" data-title="Name: ">  <a  class="link" href="{% url "file:file-approve" user.pk%}">
+          {{user.title}}</a>
+        </div>
+        <div class="player-city" data-title="City: ">
+          {{user.type_documents}}</div>
+        <div class="player-country" data-title="Country: ">
+          {{user.author.lastname}},  {{user.author.firstname}}, {{user.author.middlename}}</div>
+        <div class="player-value" data-title="Value: ">
+          {{user.date_uploaded}}</div> 
+      </div>
+      {% endfor %}
+      </div>
     </div>
   </div>
-</div>
 </body>
- 
-<script src="{% static 'js/alumni.js' %}"></script>
+<script src="{% static 'js/file.js' %}"></script>
+<script src="{% static 'js/navsnippets.js' %}"></script>
 {% include 'snippets/js.html' %}
+ 
+
 </html>
  

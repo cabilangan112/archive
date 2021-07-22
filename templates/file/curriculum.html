@@ -54,29 +54,30 @@
         </ul>
       </div>
     </nav>
-<body>
+  <body>
     <div class="page-wrapper chiller-theme toggled">
       <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
         <i class="fas fa-bars"></i>
       </a>
-     {% include 'snippets/sidebar.html'%}
- 
-<div class="container">
- 
-  <div class="list">
-    {% for card in file %}
-    <div class="num">
-      <a  href="{{ card.file.url }}" >
-      <h3 > <strong>{{ card.title }}</strong>
-                    <div class="description">
-                {{ card.description|truncatewords:"20"|linebreaks }}
-              </div></h3>
+      {% include 'snippets/sidebar.html'%}
+      <div class="container">
+        <div class="list">
+        {% for card in file %}
+        {% if card.approve %}
+          <div class="num">
+            <a  href="{{ card.file.url }}" >
+            <h3 > <strong>{{ card.title }}</strong>
+            <div class="description">
+              {{ card.description|truncatewords:"20"|linebreaks }}
+            </div></h3> </a>
+          </div>   
+          {% endif %}   
+        {% endfor %}
+        </div>
+      </div>
     </div>
- </a>
-    {% endfor %}
-  </div>
-</div>
-<h5 class="message">Hover Over List Items</h5>
-</body>
-</html>
+  </body>
+ </html>
+<script src="{% static 'js/file.js' %}"></script>
+<script src="{% static 'js/navsnippets.js' %}"></script>
 {% include 'snippets/js.html' %}

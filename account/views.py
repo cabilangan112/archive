@@ -12,13 +12,13 @@ from django.views import generic
 from.models import User
  
 from django.urls import reverse	
-from .forms import UserLoginForm, UserRegisterForm,EditProfileForm,EditPasswordForm,PersonnelUserRegisterForm
+from .forms import UserLoginForm,RuleAssignForm, UserRegisterForm,EditProfileForm,EditPasswordForm,PersonnelUserRegisterForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 class ProfileView(LoginRequiredMixin,View):
     def get(self, request,*args, **kwargs):
-        prof = User.objects.all()
-        context = {'prof':prof,}
+        qs = User.objects.all()
+        context = {'qs':qs,}
         return render(request, "profile/profile_list.html", context)
 
 class ProfileDetailView(LoginRequiredMixin, View):
@@ -33,8 +33,8 @@ class FacultyView(LoginRequiredMixin,View):
         prof = User.objects.filter(Faculty=True)
   
         if prof.exists():
-            return render(request, "profile/faculty_list.html",{'prof':prof,})
-        return render(request, "profile/faculty_list.html",{'prof':prof,})
+            return render(request, "profile/user.html",{'prof':prof,})
+        return render(request, "profile/user.html",{'prof':prof,})
 
 class StudentView(LoginRequiredMixin,View):
     def get(self, request,*args, **kwargs):
@@ -42,8 +42,8 @@ class StudentView(LoginRequiredMixin,View):
         prof = User.objects.filter(Students=True)
          
         if prof.exists(): 
-            return render(request, "profile/student_list.html",{'prof':prof,})
-        return render(request, "profile/student_list.html",{'prof':prof,})
+            return render(request, "profile/user.html",{'prof':prof,})
+        return render(request, "profile/user.html",{'prof':prof,})
 
 class ProgramView(LoginRequiredMixin,View):
     def get(self, request,*args, **kwargs):
@@ -51,17 +51,19 @@ class ProgramView(LoginRequiredMixin,View):
         prof = User.objects.filter(Program_head=True)
 
         if prof.exists(): 
-            return render(request, "profile/program_list.html",{'prof':prof,})
-        return render(request, "profile/program_list.html",{'prof':prof,})
+            return render(request, "profile/user.html",{'prof':prof,})
+        return render(request, "profile/user.html",{'prof':prof,})
 
 class ProfileAdminView(View):
     def get(self, request,*args, **kwargs):
         query = self.request.GET.get('q')
-        qs = Book.objects.all().order_by("-title").search(query)
+        qs = User.objects.all().order_by("-date_updated")
 
-        if prof and qs.exists():
-            return render(request, "profile/profile_admin.html",{'prof':qs,})
-        return render(request, "profile/profile_admin.html",{'prof':qs,})
+        if qs.exists():
+            return render(request, "profile/profile_admin.html",{'qs':qs,})
+        return render(request, "profile/profile_admin.html",{'qs':qs,})
+
+
 
 class LoginView(TemplateView):
 
@@ -177,5 +179,16 @@ class EditPassword(LoginRequiredMixin, generic.TemplateView):
 
         return render(self.request, self.template_name, context)
 
-
- 
+def Ruleassign(request, email):
+    user = get_object_or_404(User, email=email)
+    if request.method == "POST":
+        form = RuleAssignForm(request.POST, instance=user)
+        if form.is_valid():           
+            user = form.save(commit=False)
+          
+            user.save()
+        return redirect('account:user-admin')
+    else:
+        form = RuleAssignForm(instance=user)
+    return render(request, 'profile/user-form.html',{'form': form,
+        'user':user})

@@ -6,14 +6,15 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 
-body {
-  margin: 0;
+.marg {
+  margin: 20px;
 
 }
-
+ 
 .players {
-  margin-left: 500px;
+  margin-top: 80px;
 }
+
 article,
 aside,
 details,
@@ -1381,7 +1382,7 @@ th {
 }
 body {
   font-size: 13px;
-  margin: 20px;
+ 
 }
 
 .header > div:before {

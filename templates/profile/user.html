@@ -68,17 +68,16 @@
     <div class="player-number">ID Number</div>
     <div class="player-name">Name</div>
     <div class="player-city">Email</div>
-    <div class="player-country">Departmen</div>
+    <div class="player-country">Department</div>
     <div class="player-value">Course </div>
     <div class="player-stats">Year</div>
   </div>
- 
-      {% for user in qs %}
+      {% for user in prof %}
   <div class="player">
 
         <div class="player-number" data-title="Number: ">{{user.id_number }}</div>
-        <div class="player-name" data-title="Name: "> <a  class="link" href="{% url "account:assign_profile" user.email%}">
-        {{user.last_name}} {{user.first_name}} </a></div>
+        <div class="player-name" data-title="Name: "> 
+        {{user.last_name}} {{user.first_name}} </div>
         <div class="player-city" data-title="City: ">{{user.email }}</div>
         <div class="player-country" data-title="Country: ">{{user.department}}</div>
         <div class="player-value" data-title="Value: ">{{user.course }}</div>
@@ -92,8 +91,10 @@
   </div>
 </div>
 </body>
- 
-<script src="{% static 'js/alumni.js' %}"></script>
+<script src="{% static 'js/file.js' %}"></script>
+<script src="{% static 'js/navsnippets.js' %}"></script>
 {% include 'snippets/js.html' %}
+ 
+
 </html>
  

@@ -63,33 +63,36 @@
         <div class="card tweets-header">
           Memorandum
         </div>
-        {% for card in file %}
+        {% for qs in file %}
+        {% if qs.approve %}
         <div class="card tweet">
           <a class="author">
             <img class="avatar" src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg">
-            <span class="name">{{ card.user.first_name }} {{ card.user.last_name }}</span>
-            <span class="username">{{ card.user.email}} </span>
+            <span class="name">{{ qs.user.first_name }} {{ card.user.last_name }}</span>
+            <span class="username">{{ qs.user.email}} </span>
           </a>
           <div class="content">
-            <small>{{ card.date_uploaded  | timesince }}, ago </small> 
+            <small>{{ qs.date_uploaded  | timesince }}, ago </small> 
           </div>
           <div class="card summary">
-            <img class="background"  src="{{ card.content.url }}" />
+            <img class="background"  src="{{qs.content.url }}" />
             <div class="information">
-              <div class="title">{{ card.title}} </div>
+              <div class="title">{{ qs.title}} </div>
               <div class="description">
-                {{ card.description|truncatewords:"20"|linebreaks }}
+                {{ qs.description|truncatewords:"20"|linebreaks }}
               </div>
               <div class="domain">
-                <a class="link" href='{% url "file:memo-detail"  card.title%}'  >Detail</a>
+                <a class="link" href='{% url "file:memo-detail"  qs.title%}'  >Detail</a>
               </div>
             </div>
           </div>
-          </div>
-             {% endfor %}
         </div>
-   
-      </div>
+        {% endif %}
+      {% endfor %}
+    </div>
   </body>
 </html>
+<script src="{% static 'js/file.js' %}"></script>
+<script src="{% static 'js/navsnippets.js' %}"></script>
 {% include 'snippets/js.html' %}
+ 

@@ -10,7 +10,7 @@ from django.views.generic import (ListView,DetailView,CreateView,UpdateView, Vie
 from django.contrib.auth.mixins import (LoginRequiredMixin,PermissionRequiredMixin)
 from django.contrib.auth import get_user_model
 from .models import (Post, Memo, Department, Author, Course,)
-from .forms import (PostForm, DepartmentForm, CourseForm, AuthorForm)
+from .forms import (PostForm,ApproveMemoForm,ApprovePostForm, DepartmentForm, CourseForm, AuthorForm)
  
 class HomeView(View):
     def get(self, request, *args, **kwargs):
@@ -82,18 +82,49 @@ class AuthorDetailView(LoginRequiredMixin,View):
         context = {'author':author,}
         return render(request, "file_detail.html", context)
 
+class PostAdminView(View):
+    def get(self, request,*args, **kwargs):
+        query = self.request.GET.get('q')
+        qs = Post.objects.all().order_by("-date_uploaded").search(query)
+
+
+        if qs.exists():
+            return render(request, "file/post_admin.html",{'qs':qs,})
+        return render(request, "file/post_admin.html",{'qs':qs,})
+
+class  MemoAdmin(View):
+    def get(self, request, *args, **kwargs):
+        query = self.request.GET.get('q')
+        file = Memo.objects.all().order_by("-date_uploaded").search(query)
+
+        if file.exists():
+            return render(request, "file/memo-admin.html",{'file':file})
+        return render(request, "file/memo-admin.html",{'file':file})
 
 def AdminAproval(request, pk):
     post = get_object_or_404(Post, pk=pk)
     if request.method == "POST":
-        form = pprovePostForm(request.POST, instance=Post )
+        form = ApprovePostForm(request.POST, instance=post )
         if form.is_valid():           
             post = form.save(commit=False)
             post.save()
-        return redirect('file:post')
+        return redirect('file:post-admin')
     else:
-        form = pprovePostForm(instance=Post)
-    return render(request, 'post/approve-form.html',{'form': form,
+        form = ApprovePostForm(instance=Post)
+    return render(request, 'file/approve-form.html',{'form': form,
+        'post':post})
+
+def MemoApprove(request, pk):
+    post = get_object_or_404(Memo, pk=pk)
+    if request.method == "POST":
+        form = ApproveMemoForm(request.POST, instance=post )
+        if form.is_valid():           
+            post = form.save(commit=False)
+            post.save()
+        return redirect('file:memo-admin')
+    else:
+        form = ApproveMemoForm(instance=Post)
+    return render(request, 'file/memo-approve.html',{'form': form,
         'post':post})
 
 

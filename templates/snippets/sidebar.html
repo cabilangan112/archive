@@ -113,21 +113,18 @@
               <li class="sidebar-dropdown">
                 <a href="#">
                   <i class="fa fa-chart-line"></i>
-                  <span>Charts</span>
+                  <span>User Approval</span>
                 </a>
                 <div class="sidebar-submenu">
                   <ul>
                     <li>
-                      <a href="#">Pie chart</a>
+                      <a href="{% url 'account:user-admin' %}">User</a>
                     </li>
                     <li>
-                      <a href="#">Line chart</a>
+                      <a href="{% url 'file:post-admin' %}">File</a>
                     </li>
                     <li>
-                      <a href="#">Bar chart</a>
-                    </li>
-                    <li>
-                      <a href="#">Histogram</a>
+                      <a href="{% url 'file:memo-admin' %}">Memo</a>
                     </li>
                   </ul>
                 </div>
@@ -274,3 +271,5 @@
         </div>
       </div>
     </nav>
+    
+    {% include 'snippets/js.html' %}
